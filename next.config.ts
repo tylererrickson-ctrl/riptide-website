@@ -4,6 +4,7 @@ import { sanity } from "next-sanity/live/cache-life";
 const indexable = process.env.VERCEL_ENV === "production" && process.env.SITE_INDEXABLE === "true";
 
 const nextConfig: NextConfig = {
+  env: { NEXT_PUBLIC_BUILD_YEAR: String(new Date().getFullYear()) },
   cacheComponents: true,
   partialPrefetching: true,
   cacheLife: { default: sanity },

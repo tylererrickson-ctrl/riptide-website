@@ -3,15 +3,16 @@ import { PortableText } from "next-sanity";
 import type { SiteSettings } from "@/sanity/types";
 import { SmartLink } from "./SmartLink";
 import { DisclaimerReopenButton } from "./DisclaimerGate";
+import { FooterYear } from "./FooterYear";
 
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
-  const year = 2026; // Phase 3: render the year at request time without breaking the static shell
+  const name = settings?.siteName ?? "Riptide Advisors";
   return (
     <footer className="site-footer" data-tone="dark">
       <div className="footer-grid">
         <div>
-          <Image src="/images/logo-horizontal-white.png" alt="Riptide Advisors" width={220} height={75} />
-          {settings?.footerTagline && <p>{settings.footerTagline}</p>}
+          <p className="micro">{name}</p>
+          {settings?.footerTagline && <p className="footer-tagline">{settings.footerTagline}</p>}
         </div>
         {!!settings?.footerNav?.length && (
           <nav aria-label="Footer">
@@ -27,23 +28,41 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
             </ul>
           </nav>
         )}
-        <address>
+        <div>
           <p className="micro">Contact</p>
-          {settings?.email && <a href={`mailto:${settings.email}`}>{settings.email}</a>}
-          {settings?.addressLines?.map((l) => <span key={l}>{l}</span>)}
-          {settings?.linkedin && (
-            <SmartLink href={settings.linkedin}>LinkedIn</SmartLink>
-          )}
-        </address>
+          <address>
+            {settings?.email && <a href={`mailto:${settings.email}`}>{settings.email}</a>}
+            {settings?.addressLines?.map((l) => (
+              <span key={l}>{l}</span>
+            ))}
+          </address>
+        </div>
+        <div>
+          <p className="micro">Follow</p>
+          <ul>
+            {settings?.linkedin && (
+              <li>
+                <SmartLink href={settings.linkedin}>LinkedIn</SmartLink>
+              </li>
+            )}
+          </ul>
+        </div>
       </div>
-      {settings?.footerDisclosure && (
+
+      <div className="footer-wordmark" aria-hidden="true">
+        <Image src="/images/logo-mark.png" alt="" width={386} height={374} />
+        <span>Riptide</span>
+      </div>
+
+      {!!settings?.footerDisclosure?.length && (
         <div className="footer-disclosure">
           <PortableText value={settings.footerDisclosure} />
         </div>
       )}
-      <div className="footer-legal">
+
+      <div className="footer-legal micro">
         <span>
-          © {year} {settings?.siteName ?? "Riptide Advisors"}
+          © <FooterYear /> {name}
         </span>
         <ul>
           {settings?.legalLinks?.map((l) =>
@@ -59,6 +78,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
             </li>
           )}
         </ul>
+        <span>{settings?.locationShort}</span>
       </div>
     </footer>
   );

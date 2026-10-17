@@ -112,26 +112,29 @@ function LeadForm({ formKey, title, successMessage }: { formKey: FormRef["key"];
   if (status === "done") return <p role="status">{successMessage ?? "Thanks for submitting!"}</p>;
 
   return (
-    <form onSubmit={onSubmit} aria-label={title} noValidate={false}>
+    <form onSubmit={onSubmit} aria-label={title} className="lead-form">
       {FORM_FIELDS[formKey].map((f) => {
         const fid = `${id}-${f.name}`;
         if (f.kind === "checkboxes") {
           return (
-            <fieldset key={f.name} data-required data-label={f.label}>
+            <fieldset key={f.name} data-required data-label={f.label} className="span-2">
               <legend>
                 {f.label} <span aria-hidden="true">*</span>
                 <span className="sr-only"> (required, choose at least one)</span>
               </legend>
-              {f.options.map((o) => (
-                <label key={o}>
-                  <input type="checkbox" name={f.name} value={o} /> {o}
-                </label>
-              ))}
+              <div className="checks">
+                {f.options.map((o) => (
+                  <label key={o} className="check">
+                    <input type="checkbox" name={f.name} value={o} />
+                    <span>{o}</span>
+                  </label>
+                ))}
+              </div>
             </fieldset>
           );
         }
         return (
-          <div className="field" key={f.name}>
+          <div className={`field${f.kind === "textarea" ? " span-2" : ""}`} key={f.name}>
             <label htmlFor={fid}>
               {f.label} <span aria-hidden="true">*</span>
             </label>
@@ -150,12 +153,12 @@ function LeadForm({ formKey, title, successMessage }: { formKey: FormRef["key"];
         );
       })}
       {error && (
-        <p role="alert" className="form-error">
+        <p role="alert" className="form-error span-2">
           {error}
         </p>
       )}
-      <button type="submit" className="button-solid">
-        Submit
+      <button type="submit" className="button-solid span-2">
+        Submit <span aria-hidden="true">→</span>
       </button>
     </form>
   );

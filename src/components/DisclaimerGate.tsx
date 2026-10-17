@@ -206,6 +206,8 @@ export function DisclaimerGate({ disclaimer: d, manual = false }: { disclaimer: 
         <div className="gate-card">
           <div className="gate-head">
             <span className="micro">{d.kicker ?? "Legal disclaimer"}</span>
+            {/* eslint-disable-next-line @next/next/no-img-element -- 22px decorative mark */}
+            <img src="/images/logo-mark.png" alt="" width={22} height={22} />
           </div>
           <div className="gate-body" ref={measureBody} onScroll={d.requireScroll ? onScrollBody : undefined} tabIndex={0}>
             <h2 id={headingId} tabIndex={-1} data-autofocus>
@@ -217,7 +219,9 @@ export function DisclaimerGate({ disclaimer: d, manual = false }: { disclaimer: 
             </div>
           </div>
           <div className="gate-foot">
-            <button type="button" className="bracket bracket-quiet" onClick={decline}>
+            <span className="micro">Riptide Advisors · Greenwich, CT</span>
+            <div className="gate-actions">
+            <button type="button" className="bracket" onClick={decline}>
               <span>{manual ? "Close" : (d.declineLabel ?? "Decline")}</span>
             </button>
             {!manual && (
@@ -231,6 +235,7 @@ export function DisclaimerGate({ disclaimer: d, manual = false }: { disclaimer: 
                 <span>{d.acceptLabel ?? "Accept & enter"}</span>
               </button>
             )}
+            </div>
           </div>
         </div>
       </div>

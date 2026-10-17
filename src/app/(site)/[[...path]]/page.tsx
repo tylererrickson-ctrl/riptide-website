@@ -6,7 +6,7 @@ import { cachedSanity, getDynamicFetchOptions, type DynamicFetchOptions } from "
 import { PAGE_PATHS_QUERY, PAGE_QUERY, SETTINGS_QUERY } from "@/sanity/queries";
 import { urlFor } from "@/sanity/image";
 import { isIndexable } from "@/lib/site";
-import { Sections } from "@/components/Sections";
+import { Sections } from "@/components/sections";
 import { DisclaimerGate } from "@/components/DisclaimerGate";
 import type { Disclaimer, SanityImage, Section, SiteSettings } from "@/sanity/types";
 
