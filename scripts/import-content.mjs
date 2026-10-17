@@ -110,6 +110,7 @@ async function build() {
     mainNav: [
       linkItem("Analytics", "/analytics"),
       linkItem("For investors", "/for-investors"),
+      linkItem("Performance", "/rof"),
       linkItem("For portfolio managers", "/for-portfolio-managers"),
       linkItem("Principles", "/our-principles"),
       linkItem("Risk", "/risk"),
@@ -119,6 +120,7 @@ async function build() {
       linkItem("Home", "/"),
       linkItem("For Portfolio Managers", "/for-portfolio-managers"),
       linkItem("For Investors", "/for-investors"),
+      linkItem("Performance", "/rof"),
       linkItem("Principles", "/our-principles"),
       linkItem("Contact Us", "/contact"),
     ],
