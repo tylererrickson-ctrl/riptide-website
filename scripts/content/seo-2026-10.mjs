@@ -5,7 +5,7 @@ export const SEO = {
   "page-home": {
     title: "Riptide Advisors | Emerging Manager Investment Platform",
     description:
-      "Riptide Advisors is a multi-manager investment platform helping emerging portfolio managers build track records and giving investors early access through funds and SMAs.",
+      "Riptide Advisors is a multi-strategy investment platform helping emerging portfolio managers build track records and giving investors early access through funds and SMAs.",
   },
   "page-about": {
     title: "About Riptide Advisors | Talent-Driven Investment Platform",

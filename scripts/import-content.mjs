@@ -139,13 +139,13 @@ async function build() {
       sections: [
         { _type: "heroPortal", eyebrow: "Riptide Advisors",
           heading: "Navigating Alternative Investments",
-          subheading: "We offer multi-manager funds and custom managed accounts to allocators seeking early access to differentiated investment performance.",
+          subheading: "We offer multi-strategy funds and custom managed accounts to allocators seeking early access to differentiated investment performance.",
           image: await image("home-hero-banner.png", ""),
           panels: [
             { _key: key(), _type: "portalPanel", meta: "Capital solutions · Operating solutions", title: "For Portfolio Managers",
               tagline: "We provide the institutional infrastructure, operational support, and capital pathways portfolio managers need to launch strategies, scale efficiently, and focus on delivering performance.",
               link: link("Explore more", "/for-portfolio-managers") },
-            { _key: key(), _type: "portalPanel", meta: "Multi-manager funds · Custom managed accounts", title: "For Investors",
+            { _key: key(), _type: "portalPanel", meta: "Multi-strategy funds · Custom managed accounts", title: "For Investors",
               tagline: "We provide capital partners with differentiated access to high-quality investment strategies, supported by institutional-grade infrastructure and disciplined risk management.",
               link: link("Explore more", "/for-investors") },
           ],
