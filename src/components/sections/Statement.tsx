@@ -20,7 +20,7 @@ export function Statement({ s, first }: { s: S; first: boolean }) {
       <Rail rail={s.rail} />
       <div ref={track} className="statement-track">
         <div className="statement-sticky">
-          {s.eyebrow && <p className="micro">{s.eyebrow}</p>}
+          {s.eyebrow && !s.rail?.label && <p className="micro">{s.eyebrow}</p>}
           <Heading first={first} className="statement-text">
             <span className="sr-only">{s.text}</span>
             <span aria-hidden="true">

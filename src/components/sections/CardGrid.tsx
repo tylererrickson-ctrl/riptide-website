@@ -1,5 +1,6 @@
 import type { Section } from "@/sanity/types";
-import { Cta, Heading, SanityImg, Shell } from "./shared";
+import { urlFor } from "@/sanity/image";
+import { Cta, Heading, Shell } from "./shared";
 
 type S = Extract<Section, { _type: "cardGrid" }>;
 
@@ -13,12 +14,18 @@ export function CardGrid({ s, first }: { s: S; first: boolean }) {
         </div>
       )}
       <ul className="cards">
-        {s.cards?.map((c, i) => (
+        {s.cards?.map((c) => (
           <li key={c._key} className="card" data-reveal>
-            <div className="card-top">
-              <span className="micro">{String(i + 1).padStart(2, "0")}</span>
-              <SanityImg image={c.icon} sizes="44px" width={176} className="card-icon" />
-            </div>
+            {c.icon?.asset && (
+              <div className="card-top">
+                {/* Icons are single-colour artwork: used as a mask so they take the theme's brand colour. */}
+                <span
+                  className="card-icon"
+                  aria-hidden="true"
+                  style={{ ["--icon" as string]: `url("${urlFor(c.icon).width(176).format("png").url()}")` }}
+                />
+              </div>
+            )}
             <h3>{c.title}</h3>
             {c.subtitle && <p className="subheading">{c.subtitle}</p>}
             {c.body && <p>{c.body}</p>}

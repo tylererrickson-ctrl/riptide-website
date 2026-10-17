@@ -23,12 +23,13 @@ export function PortalHero({ s, first }: { s: S; first: boolean }) {
       </div>
       {!!s.panels?.length && (
         <ul className="portal-panels">
-          {s.panels.map((p, i) => (
+          {s.panels.map((p) => (
             <li key={p._key} className="portal-panel">
-              <div className="portal-panel-head micro">
-                <span>{String(i + 1).padStart(2, "0")}</span>
-                {p.meta && <span>{p.meta}</span>}
-              </div>
+              {p.meta && (
+                <div className="portal-panel-head micro">
+                  <span>{p.meta}</span>
+                </div>
+              )}
               <div>
                 <h2>{p.link?.href ? <SmartLink href={p.link.href}>{p.title}</SmartLink> : p.title}</h2>
                 {p.tagline && <p className="tagline">{p.tagline}</p>}
