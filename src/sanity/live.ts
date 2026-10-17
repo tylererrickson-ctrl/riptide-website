@@ -17,10 +17,13 @@ export const { sanityFetch, SanityLive } = defineLive({
   strict: true,
 });
 
+/** Site-wide cache tag on every Sanity read; /api/revalidate expires it on publish. */
+export const SITE_CACHE_TAG = "sanity";
+
 /** The app's one shared 'use cache' boundary for Sanity reads. */
 export const cachedSanity: StrictDefinedFetchType = async (options) => {
   "use cache";
-  return sanityFetch(options);
+  return sanityFetch({ ...options, tags: [...(options.tags ?? []), SITE_CACHE_TAG] });
 };
 
 export interface DynamicFetchOptions {
