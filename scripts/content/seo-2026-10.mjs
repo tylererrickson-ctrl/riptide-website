@@ -5,7 +5,7 @@ export const SEO = {
   "page-home": {
     title: "Riptide Advisors | Alternative Investments",
     description:
-      "Riptide Advisors is an alternative investment firm offering multi-strategy funds and custom managed accounts, and a platform for emerging portfolio managers.",
+      "Riptide Advisors is an alternative investment advisor offering multi-strategy fund and custom managed accounts.",
   },
   "page-about": {
     title: "About Riptide Advisors | Talent-Driven Investment Platform",
