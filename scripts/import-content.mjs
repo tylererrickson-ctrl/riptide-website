@@ -149,7 +149,7 @@ async function build() {
           ],
           strip: { tagline: "Guiding values for our firm", link: link("Read our principles", "/our-principles") } },
         { _type: "statement", rail: rail(undefined, "Our philosophy"), eyebrow: "Our philosophy",
-          text: "Great investment talent creates its own momentum.",
+          text: "We create the momentum. Great investment talent takes care of the rest.",
           body: "Our role is to provide the infrastructure, capital, and alignment to accelerate that trajectory and give both managers and allocators a better way to participate in its growth.",
           cta: link("Contact now", "/contact") },
         { _type: "explainer", tone: "dark", rail: rail(undefined, "Our specialities"),
