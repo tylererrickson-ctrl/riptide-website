@@ -53,7 +53,7 @@ export type Section = Base &
   (
     | { _type: "heroPortal"; eyebrow?: string; heading: string; subheading?: string; image?: SanityImage;
         panels?: { _key: string; meta?: string; title: string; tagline?: string; link?: Link }[];
-        strip?: { title?: string; tagline?: string; link?: Link } }
+        strip?: { title?: string; tagline?: string; items?: string[]; link?: Link } }
     | { _type: "heroPage"; eyebrow?: string; heading: string; intro?: string; image?: SanityImage;
         stats?: { _key: string; label?: string; value?: string }[]; ctas?: (Link & { _key: string })[] }
     | { _type: "statement"; eyebrow?: string; text: string; body?: string; cta?: Link }

@@ -73,6 +73,7 @@ export const heroPortal = defineType({
     defineField({ name: "strip", title: "Bottom strip link", type: "object", fields: [
       defineField({ name: "title", type: "string" }),
       defineField({ name: "tagline", type: "string" }),
+      defineField({ name: "items", title: "Short list (e.g. our principles)", type: "array", of: [defineArrayMember({ type: "string" })] }),
       defineField({ name: "link", type: "link" }),
     ] }),
   ],
