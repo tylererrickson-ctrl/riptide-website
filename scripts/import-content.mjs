@@ -155,7 +155,7 @@ async function build() {
             items: ["Earn Trust", "Create Alignment", "Build Lasting Partnerships", "Play to Win", "Improve Constantly"],
             link: link("Read our principles", "/our-principles") } },
         { _type: "statement", rail: rail(undefined, "Our philosophy"), eyebrow: "Our philosophy",
-          text: "We create the momentum. Great investment talent takes care of the rest.",
+          text: "We create the momentum. Results take care of the rest.",
           body: "Our platform allows investors to increase their investment in strategies as they gain conviction.",
           cta: link("Contact now", "/contact") },
         { _type: "teamGrid", rail: rail(undefined, "Our team"), members: teamRefs },
