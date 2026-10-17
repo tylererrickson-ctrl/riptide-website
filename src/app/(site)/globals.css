@@ -375,12 +375,15 @@ h2.rail-label { font: inherit; letter-spacing: inherit; line-height: inherit; te
 .portal-strip h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem); letter-spacing: -0.03em; }
 .portal-strip h2.portal-strip-label { font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: 0.14em; font-weight: 500; color: var(--ink); }
 .portal-strip-list {
-  list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px clamp(14px, 2vw, 28px);
+  list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px clamp(10px, 1.4vw, 22px);
   flex: 1 1 auto; justify-content: center; color: var(--ink);
   font-size: clamp(0.9375rem, 0.85rem + 0.3vw, 1.0625rem); letter-spacing: -0.01em;
 }
-.portal-strip-list li { display: inline-flex; align-items: center; gap: clamp(14px, 2vw, 28px); white-space: nowrap; }
+.portal-strip-list li { display: inline-flex; align-items: center; gap: clamp(10px, 1.4vw, 22px); white-space: nowrap; }
 .portal-strip-list li + li::before { content: ""; flex: none; width: 4px; height: 4px; border-radius: 50%; background: var(--brand-light); }
+@media (min-width: 1100px) {
+  .portal-strip:has(.portal-strip-list) { display: grid; grid-template-columns: auto 1fr auto; column-gap: clamp(24px, 3vw, 48px); }
+}
 @media (max-width: 760px) {
   .portal-strip { flex-direction: column; align-items: flex-start; }
   .portal-strip-list { justify-content: flex-start; flex-direction: column; gap: 4px; }
