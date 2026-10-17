@@ -156,7 +156,7 @@ async function build() {
             link: link("Read our principles", "/our-principles") } },
         { _type: "statement", rail: rail(undefined, "Our philosophy"), eyebrow: "Our philosophy",
           text: "We create the momentum. Great investment talent takes care of the rest.",
-          body: "Our role is to provide the infrastructure, capital, and alignment to accelerate that trajectory and give both managers and allocators a better way to participate in its growth.",
+          body: "Our platform allows investors to increase their investment in strategies as they gain conviction.",
           cta: link("Contact now", "/contact") },
         { _type: "teamGrid", rail: rail(undefined, "Our team"), members: teamRefs },
         { _type: "contactBlock", rail: rail(undefined, "Connect"),
