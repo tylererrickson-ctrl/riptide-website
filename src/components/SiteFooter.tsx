@@ -49,9 +49,8 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
         </div>
       </div>
 
-      <div className="footer-wordmark" aria-hidden="true">
-        <Image src="/images/logo-mark.png" alt="" width={386} height={374} />
-        <span>Riptide</span>
+      <div className="footer-wordmark">
+        <Image src="/images/logo-horizontal-white.png" alt={name} width={1103} height={374} sizes="(min-width: 900px) 520px, 70vw" />
       </div>
 
       {!!settings?.footerDisclosure?.length && (

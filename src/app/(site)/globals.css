@@ -623,12 +623,8 @@ a.cta-row:hover .arrow { transform: translateX(10px); color: var(--accent); }
 .footer-grid a:hover { text-decoration: underline; }
 .footer-grid address { font-style: normal; display: grid; gap: 4px; margin-top: 12px; }
 .footer-tagline { max-width: 36ch; color: var(--ink-muted); margin-top: 12px; }
-.footer-wordmark { margin-top: clamp(56px, 8vw, 120px); display: flex; align-items: flex-end; gap: clamp(16px, 3vw, 40px); }
-.footer-wordmark img { width: clamp(64px, 10vw, 140px); height: auto; }
-.footer-wordmark span {
-  font-size: clamp(3rem, 1rem + 9vw, 11rem); letter-spacing: -0.055em; line-height: 0.8; font-weight: 500;
-  background: linear-gradient(100deg, var(--brand) 0%, var(--brand-light) 60%); -webkit-background-clip: text; background-clip: text; color: transparent;
-}
+.footer-wordmark { margin-top: clamp(56px, 8vw, 112px); }
+.footer-wordmark img { width: clamp(220px, 38vw, 520px); height: auto; }
 .footer-disclosure { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 0.8125rem; color: var(--ink-muted); max-width: 110ch; }
 .footer-disclosure p + p { margin-top: 0.8em; }
 .footer-legal {
@@ -636,7 +632,7 @@ a.cta-row:hover .arrow { transform: translateX(10px); color: var(--accent); }
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
 }
 .footer-legal ul { display: flex; flex-wrap: wrap; gap: 8px 20px; list-style: none; margin: 0; padding: 0; }
-.footer-legal a, .footer-legal button { text-decoration: none; font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+.footer-legal a, .footer-legal button { text-decoration: none; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
 .footer-legal a:hover, .footer-legal button:hover { color: var(--ink); text-decoration: underline; }
 
 /* =========================================================================
