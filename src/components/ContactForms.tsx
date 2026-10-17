@@ -1,47 +1,14 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
+import { FORM_FIELDS, type FormKey } from "@/lib/forms";
 
 /**
- * Field definitions mirror the Wix forms exactly (migration/site-inventory.md §5).
- * Phase 2: renders and validates only. Phase 4 wires submission to HubSpot.
+ * Contact forms. Fields mirror the Wix forms exactly (src/lib/forms.ts).
+ * Submissions POST to /api/lead, which writes them into Notion (see migration/forms.md).
  */
-type Field =
-  | { name: string; label: string; kind: "text" | "email"; required: true }
-  | { name: string; label: string; kind: "textarea"; required: true }
-  | { name: string; label: string; kind: "checkboxes"; options: string[]; required: true };
 
-export const FORM_FIELDS: Record<"portfolio-manager" | "allocator", Field[]> = {
-  "portfolio-manager": [
-    { name: "firstname", label: "First Name", kind: "text", required: true },
-    { name: "lastname", label: "Last Name", kind: "text", required: true },
-    { name: "email", label: "Email", kind: "email", required: true },
-    { name: "strategy", label: "Strategy", kind: "checkboxes", required: true,
-      options: ["Fundamental L/S", "Systematic", "Tactical", "Macro", "Other"] },
-    { name: "current_role", label: "Current Role", kind: "checkboxes", required: true,
-      options: ["Employed (Buy-Side)", "Employed (Sell-Side)", "Running PA", "Running Fund", "Other"] },
-    { name: "peak_aum_risk_capital", label: "Peak AUM/Risk Capital", kind: "text", required: true },
-    { name: "current_prime_broker", label: "Current Prime Broker", kind: "text", required: true },
-    { name: "investment_idea", label: "Stock/Investment Idea", kind: "text", required: true },
-    { name: "strategy_description", label: "Strategy Description", kind: "textarea", required: true },
-    { name: "how_can_riptide_help", label: "How can Riptide help you?", kind: "textarea", required: true },
-  ],
-  allocator: [
-    { name: "firstname", label: "First Name", kind: "text", required: true },
-    { name: "lastname", label: "Last Name", kind: "text", required: true },
-    { name: "email", label: "Email", kind: "email", required: true },
-    { name: "allocator_type", label: "Allocator Type", kind: "checkboxes", required: true,
-      options: ["Institutional", "RIA", "Family Office", "HNW/Individual", "Other"] },
-    { name: "title", label: "Title", kind: "checkboxes", required: true,
-      options: ["CEO", "CIO", "Analyst", "Wealth Owner/Individual", "Other"] },
-    { name: "mandate", label: "Mandate", kind: "checkboxes", required: true,
-      options: ["Multi-Strategy Funds", "Hedge Funds (Direct)", "Special Situations", "Other"] },
-    { name: "investment_size", label: "Investment Size", kind: "text", required: true },
-    { name: "how_can_riptide_help", label: "How can Riptide help you?", kind: "textarea", required: true },
-  ],
-};
-
-type FormRef = { _key: string; title: string; key: "portfolio-manager" | "allocator"; successMessage?: string };
+type FormRef = { _key: string; title: string; key: FormKey; successMessage?: string };
 
 export function ContactForms({ forms }: { forms: FormRef[] }) {
   const [active, setActive] = useState(0);
@@ -55,6 +22,7 @@ export function ContactForms({ forms }: { forms: FormRef[] }) {
             <button
               key={f._key}
               role="tab"
+              type="button"
               id={`${baseId}-tab-${i}`}
               aria-selected={i === active}
               aria-controls={`${baseId}-panel-${i}`}
@@ -88,12 +56,31 @@ export function ContactForms({ forms }: { forms: FormRef[] }) {
   );
 }
 
-function LeadForm({ formKey, title, successMessage }: { formKey: FormRef["key"]; title: string; successMessage?: string }) {
-  const id = useId();
-  const [status, setStatus] = useState<"idle" | "error" | "done">("idle");
-  const [error, setError] = useState<string | null>(null);
+function collect(form: HTMLFormElement, formKey: FormKey) {
+  const fd = new FormData(form);
+  const values: Record<string, string | string[]> = {};
+  for (const f of FORM_FIELDS[formKey]) {
+    values[f.name] = f.kind === "checkboxes" ? fd.getAll(f.name).map(String) : String(fd.get(f.name) ?? "");
+  }
+  return { values, hp: String(fd.get("website") ?? "") };
+}
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+function LeadForm({ formKey, title, successMessage }: { formKey: FormKey; title: string; successMessage?: string }) {
+  const id = useId();
+  const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
+  const [error, setError] = useState<string | null>(null);
+  const startedAt = useRef(0);
+  const doneRef = useRef<HTMLParagraphElement>(null);
+  const errorRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
+  useEffect(() => {
+    if (status === "done") doneRef.current?.focus();
+  }, [status]);
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
     for (const fs of form.querySelectorAll<HTMLFieldSetElement>("fieldset[data-required]")) {
@@ -104,15 +91,41 @@ function LeadForm({ formKey, title, successMessage }: { formKey: FormRef["key"];
       }
     }
     setError(null);
-    // Phase 4: POST to HubSpot Forms API. Until then nothing is sent anywhere.
-    setStatus("error");
-    setError("This form isn't connected yet (staging). Please email info@riptide-advisors.com.");
+    setStatus("sending");
+    try {
+      const { values, hp } = collect(form, formKey);
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ form: formKey, values, hp, startedAt: startedAt.current }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string };
+      if (!res.ok || !data.ok) throw new Error(data.error || "Something went wrong. Please email info@riptide-advisors.com.");
+      setStatus("done");
+    } catch (err) {
+      setStatus("idle");
+      setError(err instanceof Error ? err.message : "Something went wrong. Please email info@riptide-advisors.com.");
+      requestAnimationFrame(() => errorRef.current?.focus());
+    }
   };
 
-  if (status === "done") return <p role="status">{successMessage ?? "Thanks for submitting!"}</p>;
+  if (status === "done") {
+    return (
+      <p ref={doneRef} role="status" tabIndex={-1} className="lead">
+        {successMessage ?? "Thanks for submitting!"}
+      </p>
+    );
+  }
 
   return (
-    <form onSubmit={onSubmit} aria-label={title} className="lead-form">
+    <form onSubmit={onSubmit} aria-label={title} className="lead-form" aria-busy={status === "sending"}>
+      {/* Honeypot: hidden from people and assistive tech; bots tend to fill it. */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }}>
+        <label>
+          Website
+          <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+        </label>
+      </div>
       {FORM_FIELDS[formKey].map((f) => {
         const fid = `${id}-${f.name}`;
         if (f.kind === "checkboxes") {
@@ -139,13 +152,14 @@ function LeadForm({ formKey, title, successMessage }: { formKey: FormRef["key"];
               {f.label} <span aria-hidden="true">*</span>
             </label>
             {f.kind === "textarea" ? (
-              <textarea id={fid} name={f.name} required rows={5} />
+              <textarea id={fid} name={f.name} required rows={5} maxLength={5000} />
             ) : (
               <input
                 id={fid}
                 name={f.name}
                 type={f.kind}
                 required
+                maxLength={f.kind === "email" ? 254 : 300}
                 autoComplete={f.name === "firstname" ? "given-name" : f.name === "lastname" ? "family-name" : f.kind === "email" ? "email" : undefined}
               />
             )}
@@ -153,12 +167,12 @@ function LeadForm({ formKey, title, successMessage }: { formKey: FormRef["key"];
         );
       })}
       {error && (
-        <p role="alert" className="form-error span-2">
+        <p ref={errorRef} role="alert" tabIndex={-1} className="form-error span-2">
           {error}
         </p>
       )}
-      <button type="submit" className="button-solid span-2">
-        Submit <span aria-hidden="true">→</span>
+      <button type="submit" className="button-solid span-2" disabled={status === "sending"}>
+        {status === "sending" ? "Sending…" : "Submit"} <span aria-hidden="true">→</span>
       </button>
     </form>
   );

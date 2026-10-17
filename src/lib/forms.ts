@@ -1,0 +1,71 @@
+/**
+ * Lead form definitions, shared by the browser (rendering) and the server (validation).
+ * Fields mirror the Wix forms exactly (migration/site-inventory.md §5).
+ */
+
+export type FormKey = "portfolio-manager" | "allocator";
+
+export type Field =
+  | { name: string; label: string; kind: "text" | "email"; required: true }
+  | { name: string; label: string; kind: "textarea"; required: true }
+  | { name: string; label: string; kind: "checkboxes"; options: readonly string[]; required: true };
+
+export const FORM_FIELDS: Record<FormKey, readonly Field[]> = {
+  "portfolio-manager": [
+    { name: "firstname", label: "First Name", kind: "text", required: true },
+    { name: "lastname", label: "Last Name", kind: "text", required: true },
+    { name: "email", label: "Email", kind: "email", required: true },
+    { name: "strategy", label: "Strategy", kind: "checkboxes", required: true,
+      options: ["Fundamental L/S", "Systematic", "Tactical", "Macro", "Other"] },
+    { name: "current_role", label: "Current Role", kind: "checkboxes", required: true,
+      options: ["Employed (Buy-Side)", "Employed (Sell-Side)", "Running PA", "Running Fund", "Other"] },
+    { name: "peak_aum_risk_capital", label: "Peak AUM/Risk Capital", kind: "text", required: true },
+    { name: "current_prime_broker", label: "Current Prime Broker", kind: "text", required: true },
+    { name: "investment_idea", label: "Stock/Investment Idea", kind: "text", required: true },
+    { name: "strategy_description", label: "Strategy Description", kind: "textarea", required: true },
+    { name: "how_can_riptide_help", label: "How can Riptide help you?", kind: "textarea", required: true },
+  ],
+  allocator: [
+    { name: "firstname", label: "First Name", kind: "text", required: true },
+    { name: "lastname", label: "Last Name", kind: "text", required: true },
+    { name: "email", label: "Email", kind: "email", required: true },
+    { name: "allocator_type", label: "Allocator Type", kind: "checkboxes", required: true,
+      options: ["Institutional", "RIA", "Family Office", "HNW/Individual", "Other"] },
+    { name: "title", label: "Title", kind: "checkboxes", required: true,
+      options: ["CEO", "CIO", "Analyst", "Wealth Owner/Individual", "Other"] },
+    { name: "mandate", label: "Mandate", kind: "checkboxes", required: true,
+      options: ["Multi-Strategy Funds", "Hedge Funds (Direct)", "Special Situations", "Other"] },
+    { name: "investment_size", label: "Investment Size", kind: "text", required: true },
+    { name: "how_can_riptide_help", label: "How can Riptide help you?", kind: "textarea", required: true },
+  ],
+};
+
+export type Submission = Record<string, string | string[]>;
+
+const MAX = { text: 300, email: 254, textarea: 5000 } as const;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+/** Validates and normalises a submission. Returns clean values or a list of problems. */
+export function validate(form: FormKey, raw: unknown): { ok: true; values: Submission } | { ok: false; errors: string[] } {
+  if (!raw || typeof raw !== "object") return { ok: false, errors: ["Invalid submission"] };
+  const input = raw as Record<string, unknown>;
+  const values: Submission = {};
+  const errors: string[] = [];
+  for (const f of FORM_FIELDS[form]) {
+    const v = input[f.name];
+    if (f.kind === "checkboxes") {
+      const arr = (Array.isArray(v) ? v : v == null ? [] : [v]).map(String);
+      const picked = f.options.filter((o) => arr.includes(o));
+      if (picked.length !== arr.length) errors.push(`${f.label}: unknown option`);
+      if (!picked.length) errors.push(`${f.label}: choose at least one`);
+      values[f.name] = picked;
+    } else {
+      const s = typeof v === "string" ? v.trim() : "";
+      if (!s) errors.push(`${f.label} is required`);
+      else if (s.length > MAX[f.kind]) errors.push(`${f.label} is too long`);
+      else if (f.kind === "email" && !EMAIL_RE.test(s)) errors.push("Please enter a valid email address");
+      values[f.name] = s;
+    }
+  }
+  return errors.length ? { ok: false, errors } : { ok: true, values };
+}
