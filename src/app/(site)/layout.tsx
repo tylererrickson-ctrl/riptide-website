@@ -1,11 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { draftMode } from "next/headers";
+import { Suspense } from "react";
 import { fontVars } from "../fonts";
 import { VisualEditing } from "next-sanity/visual-editing";
 import { SanityLive, cachedSanity } from "@/sanity/live";
 import { SETTINGS_QUERY } from "@/sanity/queries";
 import { isIndexable, siteUrl } from "@/lib/site";
-import { SiteHeader } from "@/components/SiteHeader";
+import { SiteHeader, SiteHeaderWithPath } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { IntroLoader } from "@/components/IntroLoader";
 import { RevealObserver } from "@/components/RevealObserver";
@@ -53,12 +54,16 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         <a className="skip-link" href="#main">
           Skip to content
         </a>
-        <SiteHeader settings={settings} />
+        <Suspense fallback={<SiteHeader settings={settings} />}>
+          <SiteHeaderWithPath settings={settings} />
+        </Suspense>
         <main id="main" tabIndex={-1}>
           {children}
         </main>
         <SiteFooter settings={settings} />
-        <RevealObserver />
+        <Suspense fallback={null}>
+          <RevealObserver />
+        </Suspense>
         <SanityLive includeDrafts={isDraftMode} />
         {isDraftMode && <VisualEditing />}
       </body>

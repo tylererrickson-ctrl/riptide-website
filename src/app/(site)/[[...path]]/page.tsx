@@ -61,16 +61,22 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
-export default async function Page(props: Props) {
+/**
+ * params are read inside <Suspense> so Next can build the route's generic App Shell (used for
+ * unlisted paths and background revalidation). Known paths still prerender fully.
+ */
+export default function Page(props: Props) {
+  return (
+    <Suspense fallback={null}>
+      <PageContent params={props.params} />
+    </Suspense>
+  );
+}
+
+async function PageContent({ params }: Pick<Props, "params">) {
   const { isEnabled: isDraftMode } = await draftMode();
-  if (isDraftMode) {
-    return (
-      <Suspense fallback={null}>
-        <DraftPage params={props.params} />
-      </Suspense>
-    );
-  }
-  const { path } = await props.params;
+  if (isDraftMode) return <DraftPage params={params} />;
+  const { path } = await params;
   return <CachedPage path={toPath(path)} perspective="published" stega={false} />;
 }
 

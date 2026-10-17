@@ -18,8 +18,13 @@ const subscribeScroll = (cb: () => void) => {
  * (any `[data-hero-dark]` in <main>) it switches to light-on-dark via CSS :has().
  * Desktop shows inline nav; the "Menu" button opens a full-screen, focus-trapped overlay.
  */
-export function SiteHeader({ settings }: { settings: SiteSettings }) {
-  const pathname = usePathname();
+/** Reads the URL (needs a Suspense boundary under Cache Components). */
+export function SiteHeaderWithPath({ settings }: { settings: SiteSettings }) {
+  return <SiteHeader settings={settings} pathname={usePathname()} />;
+}
+
+/** Renders with or without a known pathname (the latter is the prerender fallback). */
+export function SiteHeader({ settings, pathname = null }: { settings: SiteSettings; pathname?: string | null }) {
   const solid = useSyncExternalStore(subscribeScroll, () => window.scrollY > 24, () => false);
   const [open, setOpen] = useState(false);
   const [openedAt, setOpenedAt] = useState(pathname);
@@ -67,7 +72,7 @@ export function SiteHeader({ settings }: { settings: SiteSettings }) {
     };
   }, [open]);
 
-  const current = (href: string) => (href === pathname ? "page" : undefined);
+  const current = (href: string) => (pathname && href === pathname ? "page" : undefined);
   const name = settings?.siteName ?? "Riptide Advisors";
 
   return (
