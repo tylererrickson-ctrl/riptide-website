@@ -1,6 +1,13 @@
 # Phase 7 — Cutover plan: Wix → Vercel
 
-**Status:** document only. Nothing in this file has been executed. Tyler runs every step.
+**Status: EXECUTED 2026-10-17** (at Tyler's instruction, via his signed-in GoDaddy/Vercel/Google sessions).
+Log: Vercel Pro active · prod env set (`SITE_INDEXABLE`, `NEXT_PUBLIC_SITE_URL`, `GOOGLE_SITE_VERIFICATION`) ·
+domains added (www primary, apex 308 → www) · Sanity CORS + production webhook `OFrop1ec6Dbavzhr` ·
+GoDaddy: `@` A → `216.150.1.1` + `216.150.16.1`, `www` CNAME → `587a21258fb16294.vercel-dns-017.com`
+(Vercel's current recommended values, in place of the legacy 76.76.21.21 / cname.vercel-dns.com below) ·
+Let's Encrypt certs issued · checks passed: redirects, indexing, revalidation, form → Notion, MX unchanged ·
+Search Console property `https://www.riptide-advisors.com/` verified (HTML tag carried over from Wix) + sitemap submitted.
+Pre-cutover zone: `dns-zone-before-cutover.md`. Rollback = §5 with those values.
 **Domain:** `riptide-advisors.com`. DNS is hosted at **GoDaddy** (nameservers `ns53.domaincontrol.com` / `ns54.domaincontrol.com`).
 **Target:** Vercel project `riptide-advisors/riptide-website`, production branch `production`.
 
