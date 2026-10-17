@@ -3,7 +3,7 @@
 // Shared by import-content.mjs and the one-off API patch that published them.
 export const SEO = {
   "page-home": {
-    title: "Riptide Advisors | Emerging Manager Investment Platform",
+    title: "Riptide Advisors | Alternative Investments",
     description:
       "Riptide Advisors is a multi-strategy investment platform helping emerging portfolio managers build track records and giving investors early access through funds and SMAs.",
   },
