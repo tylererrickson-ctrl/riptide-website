@@ -27,3 +27,6 @@ npm-debug.log*
 
 # vercel
 .vercel
+
+# Local review screenshots (may contain confidential fund data)
+/migration/previews/
