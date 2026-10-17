@@ -35,6 +35,12 @@ export async function generateMetadata(): Promise<Metadata> {
     description: data?.defaultDescription ?? undefined,
     robots: isIndexable ? { index: true, follow: true } : { index: false, follow: false },
     icons: { icon: "/images/logo-mark.png", apple: "/images/logo-mark.png" },
+    // Google Search Console / Bing Webmaster "HTML tag" verification, so ownership can be proven
+    // without touching DNS. Set the token(s) in Vercel env; absent = no tag rendered.
+    verification: {
+      google: process.env.GOOGLE_SITE_VERIFICATION || undefined,
+      other: process.env.BING_SITE_VERIFICATION ? { "msvalidate.01": process.env.BING_SITE_VERIFICATION } : undefined,
+    },
   };
 }
 

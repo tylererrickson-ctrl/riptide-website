@@ -17,6 +17,7 @@ import { createClient } from "@sanity/client";
 import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import path from "node:path";
+import { SEO } from "./content/seo-2026-10.mjs";
 
 const DRY = process.argv.includes("--dry");
 const ROOT = path.resolve(import.meta.dirname, "..");
@@ -351,6 +352,8 @@ async function build() {
 const stableHash = (doc) => createHash("sha256").update(JSON.stringify(doc)).digest("hex").slice(0, 16);
 
 const { published, drafts } = await build();
+// Phase 7 SEO pass: search titles + descriptions live in one place (scripts/content/seo-2026-10.mjs).
+for (const d of published) if (SEO[d._id]) d.seo = { ...d.seo, ...SEO[d._id] };
 if (DRY) {
   console.log(JSON.stringify({ published, drafts }, null, 2));
   process.exit(0);
