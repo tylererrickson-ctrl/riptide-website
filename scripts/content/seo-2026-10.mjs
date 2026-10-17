@@ -15,12 +15,12 @@ export const SEO = {
   "page-contact": {
     title: "Contact Us | Riptide Advisors",
     description:
-      "Contact Riptide Advisors. Portfolio managers and investors can reach our team about capital solutions, multi-manager funds and custom managed accounts.",
+      "Contact Riptide Advisors. Portfolio managers and investors can reach our team about capital solutions, multi-strategy funds and custom managed accounts.",
   },
   "page-for-investors": {
-    title: "For Investors | Multi-Manager Funds & SMAs | Riptide Advisors",
+    title: "For Investors | Multi-Strategy Funds & SMAs | Riptide Advisors",
     description:
-      "Multi-manager funds and custom managed accounts giving allocators early, transparent access to emerging investment talent, backed by institutional-grade diligence.",
+      "Multi-strategy funds and custom managed accounts giving allocators early, transparent access to emerging investment talent, backed by institutional-grade diligence.",
   },
   "page-for-portfolio-managers": {
     title: "For Portfolio Managers | Capital & Platform | Riptide Advisors",

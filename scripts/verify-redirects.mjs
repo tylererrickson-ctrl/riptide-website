@@ -25,7 +25,7 @@ async function check(path, expectStatus, expectLocation) {
 for (const r of rows) {
   if (!r.old_url.startsWith("/") || r.old_url.includes("*")) continue;
   // The privacy policy is draft-only until compliance supplies it (blocker #2), so it 404s for now.
-  if (r.status === "200") await check(r.old_url, r.old_url === "/english-privacy-policy" ? 404 : 200);
+  if (r.status === "200") await check(r.old_url, 200);
   else await check(r.old_url, Number(r.status), r.new_url);
 }
 await check("/contact/", 301, "/contact");

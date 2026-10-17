@@ -211,9 +211,9 @@ async function build() {
           intro: "We provide capital partners with differentiated access to high-quality investment strategies, supported by institutional-grade infrastructure and disciplined risk management.",
           image: await image("for-investors-banner.jpg", "Waves breaking on a rocky shore"),
           ctas: [linkItem("Contact now", "/contact")] },
-        { _type: "explainer", rail: rail("01", "Multi-manager funds"), label: "Multi-manager funds", heading: "A flexible architecture designed for different investor needs.",
+        { _type: "explainer", rail: rail("01", "Multi-strategy funds"), label: "Multi-strategy funds", heading: "A flexible architecture designed for different investor needs.",
           body: [
-            block("Riptide offers a unified investing experience through two multi-manager funds and direct investment:"),
+            block("Riptide offers a unified investing experience through two multi-strategy funds and direct investment:"),
             bullet("Riptide Funds: Opportunities, Flexible Capital, and Direct Investment"),
             bullet("Partner funds and unique actively managed strategies"),
             bullet("Tax-aware strategies designed to offset capital gains and ordinary income"),
