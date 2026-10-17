@@ -15,6 +15,7 @@ person approves → publish), so the Publish log records who approved the wordin
 | 7 | Gate settings | Defaults: accept per browser session; acceptance logged (hashed IP); Decline returns home | Same documents: "Require reading to the end", "Persistence", "Record acceptances" | Compliance to confirm |
 | 8 | **Members-only pages** (/rof, /rfcf, /meet-our-managers, ...) | Interim 302 → /contact | If fund pages come back, they may need to sit behind an accredited-investor gate or login | Tyler / compliance |
 | 9 | **Image licenses** | /for-investors banner looks like Freepik (attribution needed); 4 other uploads unconfirmed | Replace in the Studio, or add a credit (THIRD_PARTY_NOTICES.md) | Tyler |
+| 11 | **Fund performance page `/rof`** (built 2026-10-17 from the Aug 2026 factsheet) | Live on staging behind the Qualified Purchaser click-through; noindex; not in nav or sitemap | Pages → "Riptide Opportunities Fund" | **Compliance must approve before launch.** A click-through on a public website may not, by itself, avoid general solicitation for a 506(b) offering; consider a login/password limited to pre-qualified investors. The factsheet also says it "may not be reproduced or distributed without prior written consent" |
 | 10 | Marketing-rule review of site copy | Copy carried over from Wix unchanged | n/a | Compliance (optional, recommended for an RIA site) |
 
 Once 1–6 are published, re-run `node scripts/verify-redirects.mjs`. It expects `/english-privacy-policy` to 404

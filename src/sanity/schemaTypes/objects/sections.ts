@@ -353,9 +353,107 @@ export const toolEmbed = defineType({
   preview: preview("tool", "Interactive tool"),
 });
 
+
+/* ---------- Fund / performance sections ---------- */
+
+export const keyFacts = defineType({
+  name: "keyFacts",
+  title: "Key facts (label / value grid)",
+  type: "object",
+  fields: [
+    ...common,
+    defineField({ name: "heading", type: "string" }),
+    defineField({
+      name: "facts",
+      type: "array",
+      of: [defineArrayMember({ type: "object", name: "fact", fields: [
+        defineField({ name: "label", type: "string", validation: (r) => r.required() }),
+        defineField({ name: "value", type: "string", validation: (r) => r.required() }),
+        defineField({ name: "emphasis", type: "boolean", description: "Show as a large headline figure" }),
+      ], preview: { select: { title: "label", subtitle: "value" } } })],
+    }),
+    defineField({ name: "note", type: "string" }),
+  ],
+  preview: preview("heading", "Key facts"),
+});
+
+export const fundPerformance = defineType({
+  name: "fundPerformance",
+  title: "Fund performance (chart + monthly table)",
+  type: "object",
+  description: "Enter official monthly NET returns. YTD/annual figures are entered as reported, never recomputed.",
+  fields: [
+    ...common,
+    defineField({ name: "heading", type: "string" }),
+    defineField({ name: "intro", type: "text", rows: 2 }),
+    defineField({ name: "fundLabel", type: "string", initialValue: "Fund", validation: (r) => r.required() }),
+    defineField({ name: "benchmarkLabel", type: "string" }),
+    defineField({ name: "asOf", title: "As of", type: "date" }),
+    defineField({
+      name: "years",
+      type: "array",
+      of: [defineArrayMember({ type: "object", name: "perfYear", fields: [
+        defineField({ name: "year", type: "number", validation: (r) => r.required().integer() }),
+        defineField({ name: "fund", title: "Fund monthly returns (%), Jan→Dec", type: "array", of: [defineArrayMember({ type: "number" })], validation: (r) => r.max(12) }),
+        defineField({ name: "benchmark", title: "Benchmark monthly returns (%), Jan→Dec", type: "array", of: [defineArrayMember({ type: "number" })], validation: (r) => r.max(12) }),
+        defineField({ name: "fundYtd", title: "Fund YTD / annual (%), as reported", type: "number" }),
+        defineField({ name: "benchmarkYtd", title: "Benchmark YTD / annual (%), as reported", type: "number" }),
+      ], preview: { select: { title: "year", subtitle: "fundYtd" }, prepare: ({ title, subtitle }) => ({ title: String(title), subtitle: subtitle != null ? `YTD ${subtitle}%` : "" }) } })],
+    }),
+    defineField({ name: "footnote", type: "text", rows: 2 }),
+  ],
+  preview: preview("heading", "Fund performance"),
+});
+
+export const dataTable = defineType({
+  name: "dataTable",
+  title: "Table",
+  type: "object",
+  fields: [
+    ...common,
+    defineField({ name: "heading", type: "string" }),
+    defineField({ name: "intro", type: "text", rows: 3 }),
+    defineField({ name: "columns", type: "array", of: [defineArrayMember({ type: "string" })], validation: (r) => r.min(2) }),
+    defineField({
+      name: "rows",
+      type: "array",
+      of: [defineArrayMember({ type: "object", name: "tableRow", fields: [
+        defineField({ name: "cells", type: "array", of: [defineArrayMember({ type: "string" })] }),
+        defineField({ name: "total", title: "Total row", type: "boolean" }),
+      ], preview: { select: { cells: "cells" }, prepare: ({ cells }: { cells?: string[] }) => ({ title: (cells ?? []).join(" · ") }) } })],
+    }),
+    defineField({ name: "note", type: "text", rows: 3 }),
+  ],
+  preview: preview("heading", "Table"),
+});
+
+export const barList = defineType({
+  name: "barList",
+  title: "Bar list (labelled values)",
+  type: "object",
+  fields: [
+    ...common,
+    defineField({ name: "heading", type: "string" }),
+    defineField({ name: "intro", type: "text", rows: 3 }),
+    defineField({ name: "unit", type: "string", initialValue: "%" }),
+    defineField({ name: "signed", title: "Show + sign on positive values", type: "boolean", initialValue: false }),
+    defineField({
+      name: "bars",
+      type: "array",
+      of: [defineArrayMember({ type: "object", name: "bar", fields: [
+        defineField({ name: "label", type: "string", validation: (r) => r.required() }),
+        defineField({ name: "value", type: "number", validation: (r) => r.required() }),
+        defineField({ name: "note", type: "string" }),
+      ], preview: { select: { title: "label", subtitle: "value" } } })],
+    }),
+  ],
+  preview: preview("heading", "Bar list"),
+});
+
 export const sectionTypes = [
   heroPortal, heroPage, statement, explainer, cardGrid, stepper, timeline, objectives,
   teamGrid, contactBlock, formsSection, marquee, quote, cta, imageBand, legalText, toolEmbed,
+  keyFacts, fundPerformance, dataTable, barList,
 ];
 
 export const sectionMembers = sectionTypes.map((t) => defineArrayMember({ type: t.name }));

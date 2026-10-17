@@ -79,4 +79,13 @@ export type Section = Base &
     | { _type: "imageBand"; image?: SanityImage; caption?: string }
     | { _type: "legalText"; heading?: string; lastUpdated?: string; body?: PortableTextBlock[] }
     | { _type: "toolEmbed"; tool: "leverage-calculator"; heading?: string; intro?: string }
+    | { _type: "keyFacts"; heading?: string; note?: string;
+        facts?: { _key: string; label: string; value: string; emphasis?: boolean }[] }
+    | { _type: "fundPerformance"; heading?: string; intro?: string; fundLabel: string; benchmarkLabel?: string;
+        asOf?: string; footnote?: string;
+        years?: { _key: string; year: number; fund?: number[]; benchmark?: number[]; fundYtd?: number; benchmarkYtd?: number }[] }
+    | { _type: "dataTable"; heading?: string; intro?: string; columns?: string[]; note?: string;
+        rows?: { _key: string; cells?: string[]; total?: boolean }[] }
+    | { _type: "barList"; heading?: string; intro?: string; unit?: string; signed?: boolean;
+        bars?: { _key: string; label: string; value: number; note?: string }[] }
   );

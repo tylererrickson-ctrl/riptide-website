@@ -6,6 +6,7 @@ import { Explainer } from "./Explainer";
 import { CardGrid } from "./CardGrid";
 import { Stepper } from "./Stepper";
 import { Chapters } from "./Chapters";
+import { BarList, DataTable, FundPerformance, KeyFacts } from "./Fund";
 import {
   ContactBlock,
   CtaBlock,
@@ -55,6 +56,14 @@ function SectionView({ s, first, settings }: { s: Section; first: boolean; setti
       return <LegalText s={s} first={first} />;
     case "toolEmbed":
       return <ToolEmbed s={s} first={first} />;
+    case "keyFacts":
+      return <KeyFacts s={s} first={first} />;
+    case "fundPerformance":
+      return <FundPerformance s={s} first={first} />;
+    case "dataTable":
+      return <DataTable s={s} first={first} />;
+    case "barList":
+      return <BarList s={s} first={first} />;
     default:
       return null;
   }

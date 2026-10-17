@@ -27,7 +27,7 @@ old_url,new_url,status,type,decision,notes
 /profile,https://riptide-advisors.notion.site/248a9ae6ee9b80ca9c53c36d296ba8ca,301,existing-redirect,final,EXISTING Wix redirect (301 today)
 /meet-our-managers,/contact,302,members-only,DECISION NEEDED,Wix Members Area page; linked from main nav and /for-investors. Needs auth on new site or 301 elsewhere | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)
 /idea-hub,/contact,302,members-only,DECISION NEEDED,Wix Members Area page; linked from /for-portfolio-managers | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)
-/rof,/contact,302,members-only,DECISION NEEDED,"Wix Members Area page ""Riptide Opportunities Fund"" | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)"
+/rof,/rof,200,keep,final,"Riptide Opportunities Fund performance page (from Aug 2026 factsheet), gated by the Qualified Purchaser notice; noindex. Was a Wix Members Area page."
 /rfcf,/contact,302,members-only,DECISION NEEDED,"Wix Members Area page ""Riptide Flexible Capital Fund"" | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)"
 /partners,/contact,302,members-only,DECISION NEEDED,Wix Members Area page | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)
 /managers,/contact,302,members-only,DECISION NEEDED,"Wix Members Area page ""Manager Pipeline"" | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)"
