@@ -110,8 +110,8 @@ async function build() {
     mainNav: [
       linkItem("Analytics", "/analytics"),
       linkItem("For investors", "/for-investors"),
-      linkItem("Performance", "/rof"),
       linkItem("For portfolio managers", "/for-portfolio-managers"),
+      linkItem("Performance", "/rof"),
       linkItem("Principles", "/our-principles"),
       linkItem("Risk", "/risk"),
     ],
@@ -119,8 +119,8 @@ async function build() {
     footerNav: [
       linkItem("Home", "/"),
       linkItem("For Portfolio Managers", "/for-portfolio-managers"),
-      linkItem("For Investors", "/for-investors"),
       linkItem("Performance", "/rof"),
+      linkItem("For Investors", "/for-investors"),
       linkItem("Principles", "/our-principles"),
       linkItem("Contact Us", "/contact"),
     ],
@@ -143,7 +143,7 @@ async function build() {
             { _key: key(), _type: "portalPanel", meta: "Capital solutions · Operating solutions", title: "For portfolio managers",
               tagline: "We provide the institutional infrastructure, operational support, and capital pathways portfolio managers need to launch strategies, scale efficiently, and focus on delivering performance.",
               link: link("Explore more", "/for-portfolio-managers") },
-            { _key: key(), _type: "portalPanel", meta: "Multi-manager funds · Custom managed accounts", title: "For capital partners",
+            { _key: key(), _type: "portalPanel", meta: "Multi-manager funds · Custom managed accounts", title: "For investors",
               tagline: "We provide capital partners with differentiated access to high-quality investment strategies, supported by institutional-grade infrastructure and disciplined risk management.",
               link: link("Explore more", "/for-investors") },
           ],
@@ -204,7 +204,6 @@ async function build() {
     {
       _id: "page-for-investors", title: "For Investors", path: "/for-investors",
       seo: seo("FOR INVESTORS | Riptide Advisors", null, og),
-      gate: { _type: "reference", _ref: "disclaimer-investors" },
       sections: [
         { _type: "heroPage", eyebrow: "For investors", heading: "For investors",
           intro: "We provide capital partners with differentiated access to high-quality investment strategies, supported by institutional-grade infrastructure and disciplined risk management.",
@@ -316,7 +315,7 @@ async function build() {
         { _type: "explainer", heading: "How We Serve" },
         { _type: "explainer", rail: rail("01", "Investment managers"), heading: "Investment Managers",
           body: [block("We offer emerging and established investment talent a supportive platform to build verifiable, portable track records, backed by robust business formation support and access to diversified capital. Our scalable infrastructure features AI-driven research and integrated risk management tools, enabling managers to focus on their investment process. We seek individuals who value a balance of autonomy and partnership that is elusive in more traditional alternatives, while aligning success across all Riptide stakeholders. Rather than impose a rigid one-size-fits-all framework, we empower our managers with the resources and flexibility needed to maximize their potential.")] },
-        { _type: "explainer", rail: rail("02", "Capital partners"), heading: "Capital Partners",
+        { _type: "explainer", rail: rail("02", "Investors"), heading: "Investors",
           body: [block("We create alignment in our strategies through direct management investment. We match this alignment with high-performance coaching and cutting-edge systems to optimize risk-adjusted returns. Our strategic partners gain access to talent and all our LPs invest alongside motivated managers at peak performance. We design our investment products to align the right talent with the right capital partner objectives to maximize outcomes for managers, capital partners and the firm.")],
           ctas: [linkItem("Contact Us", "/contact")] },
       ],
