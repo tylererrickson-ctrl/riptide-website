@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
     NEXT_PUBLIC_REDIRECT_SOURCES: JSON.stringify(loadRedirects().map((r) => r.source)),
   },
   cacheComponents: true,
+  // Opt out of cross-deployment "immutable" static assets: on Vercel a changed stylesheet kept its old
+  // filename and the previous deployment's cached copy kept being served (2026-10-17, team-card styles).
+  // Each deployment now serves its own assets (with ?dpl), at the cost of re-downloading after deploys.
+  supportsImmutableAssets: false,
   // One branded 404 for unmatched URLs across both root layouts (site + Studio).
   experimental: { globalNotFound: true },
   partialPrefetching: true,
