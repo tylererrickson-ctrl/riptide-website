@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "content:import": "node --env-file=.env.local scripts/import-content.mjs"
+    "content:import": "node --env-file=.env.local scripts/import-content.mjs",
+    "licenses": "node scripts/generate-licenses.mjs"
   },
   "dependencies": {
     "@portabletext/react": "^8.0.1",

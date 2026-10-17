@@ -322,17 +322,20 @@ main { display: block; }
 /* =========================================================================
    Portal hero (home)
    ========================================================================= */
+/* Text over the hero photo: lighter secondary ink keeps AA (4.5:1) against the brightest image areas. */
+.portal { --ink-muted: #c8d6e1; --ink-faint: rgb(232 240 244 / 0.6); }
 .portal {
   position: relative; min-height: 100svh; display: grid; grid-template-rows: 1fr auto auto;
   padding: 0; overflow: hidden; isolation: isolate;
 }
 .portal-media { position: absolute; inset: -4%; z-index: -2; will-change: transform; }
-.portal-media img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; filter: saturate(0.6) contrast(1.05); }
+.portal-media img { width: 100%; height: 100%; object-fit: cover; opacity: 0.42; filter: saturate(0.55) contrast(0.95) brightness(0.85); }
 .portal-media::after {
   content: ""; position: absolute; inset: 0;
   background:
-    radial-gradient(120% 80% at 80% 10%, rgb(37 150 190 / 0.25), transparent 60%),
-    linear-gradient(180deg, rgb(6 19 31 / 0.55) 0%, rgb(6 19 31 / 0.2) 40%, rgb(6 19 31 / 0.85) 100%);
+    radial-gradient(120% 80% at 85% 5%, rgb(37 150 190 / 0.22), transparent 55%),
+    linear-gradient(90deg, rgb(6 19 31 / 0.55) 0%, rgb(6 19 31 / 0) 70%),
+    linear-gradient(180deg, rgb(6 19 31 / 0.6) 0%, rgb(6 19 31 / 0.35) 35%, rgb(6 19 31 / 0.88) 70%, rgb(6 19 31 / 0.95) 100%);
 }
 .portal-waves { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; }
 .portal-statement {
@@ -395,7 +398,7 @@ main { display: block; }
 .statement-track { height: 220vh; position: relative; }
 .statement-sticky { position: sticky; top: 0; min-height: 100svh; display: grid; align-content: center; padding-block: var(--header-h); }
 .statement-text { font-size: clamp(2.25rem, 1.2rem + 4.6vw, 6.5rem); letter-spacing: -0.04em; line-height: 1; max-width: 18ch; }
-.statement-text .w { transition: color 200ms linear; color: var(--ink-faint); }
+.statement-text .w { transition: color 200ms linear; color: var(--ink-muted); } /* dim state stays >= 4.5:1 */
 .statement-text .w[data-on="true"] { color: var(--ink); }
 .statement-body { margin-top: clamp(24px, 4vw, 48px); max-width: 52ch; margin-inline-start: auto; }
 @media (prefers-reduced-motion: reduce) {
@@ -455,8 +458,7 @@ main { display: block; }
 .step[data-on="true"] .step-node { background: var(--accent); border-color: var(--accent); transform: scale(1.15); }
 .step h3 { margin-top: 8px; transition: color 300ms; }
 .step p { margin-top: 8px; color: var(--ink-muted); font-size: var(--fs-small); max-width: 34ch; transition: opacity 300ms; }
-.js .step:not([data-on="true"]) h3 { color: var(--ink-faint); }
-.js .step:not([data-on="true"]) p { opacity: 0.45; }
+.js .step:not([data-on="true"]) h3 { color: var(--ink-muted); } /* dim state stays >= 4.5:1 */
 .steps-line { left: 7px; top: 8px; bottom: 8px; width: 1.5px; }
 .steps-line-fill { left: 7px; top: 8px; width: 1.5px; height: calc(100% - 16px); transform: scaleY(var(--progress, 0)); }
 @media (min-width: 900px) {
@@ -718,3 +720,9 @@ html[data-intro-seen] .intro { display: none; }
 .not-found { min-height: 80svh; display: grid; align-content: center; padding-top: calc(var(--header-h) + 48px); }
 .not-found h1 { font-size: var(--fs-display); }
 .not-found p { margin-top: 20px; }
+
+/* Long-form lists (Tailwind's preflight strips list markers; restore them where copy uses lists) */
+.chapter .body ul, .prose ul, .gate-text ul, .footer-disclosure ul { list-style: disc; padding-inline-start: 1.25em; margin: 0.6em 0; }
+.chapter .body ol, .prose ol, .gate-text ol, .footer-disclosure ol { list-style: decimal; padding-inline-start: 1.4em; margin: 0.6em 0; }
+.chapter .body li + li, .prose li + li, .gate-text li + li { margin-top: 0.35em; }
+.chapter .body li::marker, .prose li::marker { color: var(--accent); }

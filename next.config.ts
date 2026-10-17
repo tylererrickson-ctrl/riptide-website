@@ -5,7 +5,11 @@ import { loadRedirects } from "./src/config/redirects.mjs";
 const indexable = process.env.VERCEL_ENV === "production" && process.env.SITE_INDEXABLE === "true";
 
 const nextConfig: NextConfig = {
-  env: { NEXT_PUBLIC_BUILD_YEAR: String(new Date().getFullYear()) },
+  env: {
+    NEXT_PUBLIC_BUILD_YEAR: String(new Date().getFullYear()),
+    // Links to redirected paths skip prefetch (prefetching a cross-origin redirect fails CORS).
+    NEXT_PUBLIC_REDIRECT_SOURCES: JSON.stringify(loadRedirects().map((r) => r.source)),
+  },
   cacheComponents: true,
   // One branded 404 for unmatched URLs across both root layouts (site + Studio).
   experimental: { globalNotFound: true },

@@ -117,12 +117,19 @@ export function WaveField({
       ctx.globalAlpha = 1;
     };
 
+    // Phones / coarse pointers: 30 fps is plenty for a slow swell and halves the work.
+    const frameMs = matchMedia("(pointer: coarse), (max-width: 700px)").matches ? 1000 / 30 : 0;
+    let last = 0;
     const loop = (t: number) => {
-      draw(t);
+      if (!frameMs || t - last >= frameMs) {
+        last = t;
+        draw(t);
+      }
       raf = requestAnimationFrame(loop);
     };
+    let ready = false; // animation starts once the page is idle, so it never competes with hydration
     const start = () => {
-      if (running || reduced || !visible || document.hidden) return;
+      if (running || !ready || reduced || !visible || document.hidden) return;
       running = true;
       raf = requestAnimationFrame(loop);
     };
@@ -165,9 +172,16 @@ export function WaveField({
     });
     mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
-    resize();
-    start();
+    resize(); // first (still) frame immediately
+    const begin = () => {
+      ready = true;
+      start();
+    };
+    const hasIdle = "requestIdleCallback" in window;
+    const idleId = hasIdle ? window.requestIdleCallback(begin, { timeout: 2500 }) : window.setTimeout(begin, 1200);
     return () => {
+      if (hasIdle) window.cancelIdleCallback(idleId);
+      else window.clearTimeout(idleId);
       stop();
       ro.disconnect();
       io.disconnect();

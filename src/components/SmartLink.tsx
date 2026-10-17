@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+const REDIRECT_SOURCES = new Set<string>(JSON.parse(process.env.NEXT_PUBLIC_REDIRECT_SOURCES || "[]"));
+
 /** Internal paths use next/link; external links open safely in a new tab. */
 export function SmartLink({
   href,
@@ -12,7 +14,7 @@ export function SmartLink({
 >) {
   if (href.startsWith("/") && !href.startsWith("//")) {
     return (
-      <Link href={href} className={className} {...rest}>
+      <Link href={href} className={className} prefetch={REDIRECT_SOURCES.has(href) ? false : undefined} {...rest}>
         {children}
       </Link>
     );
