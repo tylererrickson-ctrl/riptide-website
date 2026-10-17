@@ -39,6 +39,7 @@ Every publish is recorded permanently in the Studio's *Publish log*.
 | GitHub | `tylererrickson-ctrl/riptide-website`. Branches: `main` (approved phases), `phase-N-*`, `staging`, `production` |
 | Vercel | team `riptide-advisors`, project `riptide-website`. **Production branch = `production`** (not deployed until cutover) |
 | Staging | https://riptide-advisors-staging.vercel.app (preview deployment + alias, behind Vercel Deployment Protection, noindex) |
+| Publish → refresh | Sanity webhook "Revalidate staging site" → `POST /api/revalidate` (signed with `SANITY_WEBHOOK_SECRET`, passes Vercel protection with an automation-bypass header). **At cutover add a second webhook to `https://www.riptide-advisors.com/api/revalidate`** (no bypass header needed) |
 
 Redeploy staging from the CLI: `vercel deploy --target preview`, then
 `vercel alias set <deployment-url> riptide-advisors-staging.vercel.app`.
