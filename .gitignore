@@ -1,8 +1,29 @@
 # Reference page captures saved from the browser (not part of the project)
 /argan.ai*
 /Riptide Advisors _ Emerging Managers*
-node_modules/
-.next/
+
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+/build
+next-env.d.ts
+*.tsbuildinfo
+
+# sanity
+/dist
+.sanity
+
+# misc
+.DS_Store
+*.pem
+npm-debug.log*
+
+# env files
 .env*
 !.env.example
+
+# vercel
 .vercel
