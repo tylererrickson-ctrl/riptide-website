@@ -109,8 +109,8 @@ async function build() {
     headerCta: link("Contact us", "/contact"),
     mainNav: [
       linkItem("Analytics", "/analytics"),
-      linkItem("For investors", "/for-investors"),
-      linkItem("For portfolio managers", "/for-portfolio-managers"),
+      linkItem("For Investors", "/for-investors"),
+      linkItem("For Portfolio Managers", "/for-portfolio-managers"),
       linkItem("Performance", "/rof"),
       linkItem("Principles", "/our-principles"),
       linkItem("Risk", "/risk"),
@@ -141,10 +141,10 @@ async function build() {
           subheading: "We offer multi-manager funds and custom managed accounts to allocators seeking early access to differentiated investment performance.",
           image: await image("home-hero-banner.png", ""),
           panels: [
-            { _key: key(), _type: "portalPanel", meta: "Capital solutions · Operating solutions", title: "For portfolio managers",
+            { _key: key(), _type: "portalPanel", meta: "Capital solutions · Operating solutions", title: "For Portfolio Managers",
               tagline: "We provide the institutional infrastructure, operational support, and capital pathways portfolio managers need to launch strategies, scale efficiently, and focus on delivering performance.",
               link: link("Explore more", "/for-portfolio-managers") },
-            { _key: key(), _type: "portalPanel", meta: "Multi-manager funds · Custom managed accounts", title: "For investors",
+            { _key: key(), _type: "portalPanel", meta: "Multi-manager funds · Custom managed accounts", title: "For Investors",
               tagline: "We provide capital partners with differentiated access to high-quality investment strategies, supported by institutional-grade infrastructure and disciplined risk management.",
               link: link("Explore more", "/for-investors") },
           ],
@@ -163,9 +163,9 @@ async function build() {
     },
     {
       _id: "page-for-portfolio-managers", title: "For Portfolio Managers", path: "/for-portfolio-managers",
-      seo: seo("FOR PORTFOLIO MANAGERS | Riptide Advisors", null, og),
+      seo: seo("For Portfolio Managers | Riptide Advisors", null, og),
       sections: [
-        { _type: "heroPage", eyebrow: "For portfolio managers", heading: "For portfolio managers",
+        { _type: "heroPage", eyebrow: "For Portfolio Managers", heading: "For Portfolio Managers",
           intro: "We provide the institutional infrastructure, operational support, and capital pathways portfolio managers need to launch strategies, scale efficiently, and focus on delivering performance.",
           image: await image("for-portfolio-managers-banner.png", ""),
           ctas: [linkItem("Idea Hub", "/idea-hub"), linkItem("Get started", "/contact")] },
@@ -204,9 +204,9 @@ async function build() {
     },
     {
       _id: "page-for-investors", title: "For Investors", path: "/for-investors",
-      seo: seo("FOR INVESTORS | Riptide Advisors", null, og),
+      seo: seo("For Investors | Riptide Advisors", null, og),
       sections: [
-        { _type: "heroPage", eyebrow: "For investors", heading: "For investors",
+        { _type: "heroPage", eyebrow: "For Investors", heading: "For Investors",
           intro: "We provide capital partners with differentiated access to high-quality investment strategies, supported by institutional-grade infrastructure and disciplined risk management.",
           image: await image("for-investors-banner.jpg", "Waves breaking on a rocky shore"),
           ctas: [linkItem("Contact now", "/contact")] },
