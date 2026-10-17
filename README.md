@@ -29,3 +29,16 @@ npm run content:import       # one-off: load the Wix export into Sanity
 ## Editing workflow
 See [src/sanity/workflow/README.md](src/sanity/workflow/README.md): draft → request review → approve (by a second person) → publish.
 Every publish is recorded permanently in the Studio's *Publish log*.
+
+## Services and environments
+| Thing | Value |
+|---|---|
+| Sanity org / project | `Riptide Advisors` (osbzs6zww) / `Riptide Website` (**nzbi6pul**), dataset `production` (**private**: it holds the publish and acceptance logs) |
+| Sanity tokens | `Website server read (viewer)`, `Website write (editor)`. Values are only in `.env.local` and Vercel env |
+| Sanity CORS | `http://localhost:3000`, `https://riptide-advisors-staging.vercel.app` (with credentials) |
+| GitHub | `tylererrickson-ctrl/riptide-website`. Branches: `main` (approved phases), `phase-N-*`, `staging`, `production` |
+| Vercel | team `riptide-advisors`, project `riptide-website`. **Production branch = `production`** (not deployed until cutover) |
+| Staging | https://riptide-advisors-staging.vercel.app (preview deployment + alias, behind Vercel Deployment Protection, noindex) |
+
+Redeploy staging from the CLI: `vercel deploy --target preview`, then
+`vercel alias set <deployment-url> riptide-advisors-staging.vercel.app`.
