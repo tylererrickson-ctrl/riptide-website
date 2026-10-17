@@ -9,7 +9,11 @@ import {
   type DocumentActionProps,
   type SanityDocument,
 } from "sanity";
-import { CheckmarkCircleIcon, CloseCircleIcon, EyeOpenIcon, PublishIcon, UnpublishIcon } from "@sanity/icons";
+import { CheckmarkCircleIcon } from "@sanity/icons/CheckmarkCircle";
+import { CloseCircleIcon } from "@sanity/icons/CloseCircle";
+import { EyeOpenIcon } from "@sanity/icons/EyeOpen";
+import { PublishIcon } from "@sanity/icons/Publish";
+import { UnpublishIcon } from "@sanity/icons/Unpublish";
 import { Stack, Text, TextArea } from "@sanity/ui";
 import { apiVersion } from "../env";
 import { contentHash } from "./hash";

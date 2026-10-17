@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { ArchiveIcon } from "@sanity/icons";
+import { ArchiveIcon } from "@sanity/icons/Archive";
 
 /**
  * Immutable audit record written by the Publish action every time something

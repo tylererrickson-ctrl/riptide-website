@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { CheckmarkIcon } from "@sanity/icons";
+import { CheckmarkIcon } from "@sanity/icons/Checkmark";
 
 /** Written by /api/gate-log when a visitor accepts a disclaimer gate. Read-only in Studio. */
 export const gateAcceptance = defineType({

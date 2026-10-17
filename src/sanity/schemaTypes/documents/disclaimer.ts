@@ -1,5 +1,5 @@
 import { defineField, defineType } from "sanity";
-import { WarningOutlineIcon } from "@sanity/icons";
+import { WarningOutlineIcon } from "@sanity/icons/WarningOutline";
 
 export const disclaimer = defineType({
   name: "disclaimer",

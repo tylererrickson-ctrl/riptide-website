@@ -25,7 +25,11 @@ const toPath = (segments?: string[]) => "/" + (segments ?? []).join("/");
 
 export async function generateStaticParams() {
   const { data } = await cachedSanity({ query: PAGE_PATHS_QUERY, perspective: "published", stega: false });
-  return ((data ?? []) as { path: string }[]).map((p) => ({ path: p.path === "/" ? [] : p.path.slice(1).split("/") }));
+  const params = ((data ?? []) as { path: string }[]).map((p) => ({
+    path: p.path === "/" ? [] : p.path.slice(1).split("/"),
+  }));
+  // Cache Components requires at least one param; the home page always exists.
+  return params.length ? params : [{ path: [] }];
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
@@ -43,7 +47,11 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
     title: page.seo?.title ?? page.title,
     description: page.seo?.description ?? undefined,
     alternates: { canonical: page.path },
-    robots: !isIndexable || page.seo?.noindex ? { index: false, follow: !page.seo?.noindex } : undefined,
+    robots: !isIndexable
+      ? { index: false, follow: false }
+      : page.seo?.noindex
+        ? { index: false, follow: true }
+        : undefined,
     openGraph: {
       title: page.seo?.title ?? page.title ?? undefined,
       description: page.seo?.description ?? undefined,
