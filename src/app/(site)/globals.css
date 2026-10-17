@@ -303,6 +303,7 @@ main { display: block; }
   border-top: 1px solid var(--line); padding-top: 14px; margin-bottom: clamp(24px, 3.5vw, 48px);
 }
 .rail-label { color: var(--ink); }
+h2.rail-label { font: inherit; letter-spacing: inherit; line-height: inherit; text-transform: inherit; margin: 0; }
 .rail-label .rail-num { color: var(--ink-muted); }
 .rail-caption { text-align: right; }
 
@@ -372,6 +373,7 @@ main { display: block; }
   border-top: 1px solid var(--line);
 }
 .portal-strip h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem); letter-spacing: -0.03em; }
+.portal-strip h2.portal-strip-label { font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: 0.14em; font-weight: 500; color: var(--ink); }
 
 /* =========================================================================
    Page hero
@@ -396,15 +398,16 @@ main { display: block; }
 /* =========================================================================
    Pinned statement (word reveal)
    ========================================================================= */
-.statement-track { height: 220vh; position: relative; }
-.statement-sticky { position: sticky; top: 0; min-height: 100svh; display: grid; align-content: center; padding-block: var(--header-h); }
+/* Pinned just below the header (no viewport centring) so there's no dead space above/below the statement. */
+.statement-track { height: 150vh; position: relative; }
+.statement-sticky { position: sticky; top: calc(var(--header-h) + 24px); display: grid; align-content: start; }
 .statement-text { font-size: clamp(2.25rem, 1.2rem + 4.6vw, 6.5rem); letter-spacing: -0.04em; line-height: 1; max-width: 18ch; }
 .statement-text .w { transition: color 200ms linear; color: var(--ink-muted); } /* dim state stays >= 4.5:1 */
 .statement-text .w[data-on="true"] { color: var(--ink); }
-.statement-body { margin-top: clamp(24px, 4vw, 48px); max-width: 52ch; margin-inline-start: auto; }
+.statement-body { margin-top: clamp(16px, 2.4vw, 32px); max-width: 60ch; }
 @media (prefers-reduced-motion: reduce) {
   .statement-track { height: auto; }
-  .statement-sticky { position: static; min-height: 0; }
+  .statement-sticky { position: static; }
   .statement-text .w { color: var(--ink); }
 }
 

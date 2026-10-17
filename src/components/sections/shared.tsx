@@ -42,14 +42,16 @@ export function Heading({
   );
 }
 
-export function Rail({ rail }: { rail?: RailT }) {
+/** Section label row. When a section has no large heading, the label is promoted to its <h2> (same look). */
+export function Rail({ rail, asHeading = false }: { rail?: RailT; asHeading?: boolean }) {
   if (!rail?.number && !rail?.label && !rail?.caption) return null;
+  const Label = asHeading ? "h2" : "span";
   return (
     <div className="rail micro" data-reveal>
-      <span className="rail-label">
+      <Label className="rail-label">
         {rail.number && <span className="rail-num">{rail.number} — </span>}
         {rail.label}
-      </span>
+      </Label>
       {rail.caption && <span className="rail-caption">{rail.caption}</span>}
     </div>
   );
@@ -114,11 +116,12 @@ export function Shell({
   className = "",
   labelledBy,
 }: {
-  s: { _type: string; rail?: RailT; anchor?: string; tone?: "light" | "dark" };
+  s: { _type: string; rail?: RailT; anchor?: string; tone?: "light" | "dark"; heading?: string };
   children: React.ReactNode;
   className?: string;
   labelledBy?: string;
 }) {
+  const headingless = !("heading" in s && s.heading);
   return (
     <section
       id={s.anchor}
@@ -126,7 +129,7 @@ export function Shell({
       className={`section section-${s._type} ${className}`}
       aria-labelledby={labelledBy}
     >
-      <Rail rail={s.rail} />
+      <Rail rail={s.rail} asHeading={headingless} />
       {children}
     </section>
   );

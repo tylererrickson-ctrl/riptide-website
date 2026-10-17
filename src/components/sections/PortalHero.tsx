@@ -48,11 +48,12 @@ export function PortalHero({ s, first }: { s: S; first: boolean }) {
           ))}
         </ul>
       )}
-      {s.strip?.title && (
+      {(s.strip?.title || s.strip?.tagline) && (
         <div className="portal-strip">
           <div>
-            <h2>{s.strip.title}</h2>
-            {s.strip.tagline && <p className="micro">{s.strip.tagline}</p>}
+            {s.strip.title ? <h2>{s.strip.title}</h2> : null}
+            {s.strip.tagline &&
+              (s.strip.title ? <p className="micro">{s.strip.tagline}</p> : <h2 className="micro portal-strip-label">{s.strip.tagline}</h2>)}
           </div>
           {s.strip.link?.href && s.strip.link.label && (
             <SmartLink href={s.strip.link.href} className="bracket bracket-accent">
