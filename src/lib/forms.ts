@@ -3,7 +3,13 @@
  * Fields mirror the Wix forms exactly (migration/site-inventory.md §5).
  */
 
-export type FormKey = "portfolio-manager" | "allocator";
+export type FormKey = "portfolio-manager" | "allocator" | "mailing-list";
+
+export const FORM_KEYS: readonly FormKey[] = ["portfolio-manager", "allocator", "mailing-list"];
+
+/** Shown under the mailing-list form and stored with each sign-up as the record of consent. */
+export const MAILING_LIST_CONSENT =
+  "By subscribing, you agree to receive occasional emails from Riptide Advisors. You can unsubscribe at any time. See our Privacy Policy for how we handle your information.";
 
 export type Field =
   | { name: string; label: string; kind: "text" | "email"; required: true }
@@ -37,6 +43,13 @@ export const FORM_FIELDS: Record<FormKey, readonly Field[]> = {
       options: ["Multi-Strategy Funds", "Hedge Funds (Direct)", "Special Situations", "Other"] },
     { name: "investment_size", label: "Investment Size", kind: "text", required: true },
     { name: "how_can_riptide_help", label: "How can Riptide help you?", kind: "textarea", required: true },
+  ],
+  "mailing-list": [
+    { name: "firstname", label: "First Name", kind: "text", required: true },
+    { name: "lastname", label: "Last Name", kind: "text", required: true },
+    { name: "email", label: "Email", kind: "email", required: true },
+    { name: "audience", label: "I am", kind: "checkboxes", required: true,
+      options: ["Investor", "Portfolio Manager", "Other"] },
   ],
 };
 

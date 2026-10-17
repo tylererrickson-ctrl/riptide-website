@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { FORM_FIELDS, type FormKey } from "@/lib/forms";
+import { SmartLink } from "./SmartLink";
+import { FORM_FIELDS, MAILING_LIST_CONSENT, type FormKey } from "@/lib/forms";
 
 /**
  * Contact forms. Fields mirror the Wix forms exactly (src/lib/forms.ts).
@@ -171,8 +172,14 @@ function LeadForm({ formKey, title, successMessage }: { formKey: FormKey; title:
           {error}
         </p>
       )}
+      {formKey === "mailing-list" && (
+        <p className="form-note micro span-2">
+          {MAILING_LIST_CONSENT.replace(" See our Privacy Policy for how we handle your information.", " ")}
+          See our <SmartLink href="/english-privacy-policy">Privacy Policy</SmartLink> for how we handle your information.
+        </p>
+      )}
       <button type="submit" className="button-solid span-2" disabled={status === "sending"}>
-        {status === "sending" ? "Sending…" : "Submit"} <span aria-hidden="true">→</span>
+        {status === "sending" ? "Sending…" : formKey === "mailing-list" ? "Subscribe" : "Submit"} <span aria-hidden="true">→</span>
       </button>
     </form>
   );

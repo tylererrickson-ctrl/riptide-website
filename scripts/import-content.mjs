@@ -18,6 +18,7 @@ import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { SEO } from "./content/seo-2026-10.mjs";
+import { PRIVACY_BODY, PRIVACY_LAST_UPDATED } from "./content/privacy-policy-2026-10.mjs";
 
 const DRY = process.argv.includes("--dry");
 const ROOT = path.resolve(import.meta.dirname, "..");
@@ -298,6 +299,11 @@ async function build() {
             { _key: key(), _type: "formRef", title: "Portfolio managers", key: "portfolio-manager", successMessage: "Thanks for submitting!" },
             { _key: key(), _type: "formRef", title: "Investors", key: "allocator", successMessage: "Thanks for submitting!" },
           ] },
+        { _type: "formsSection", anchor: "mailing-list", heading: "Join our mailing list",
+          intro: "Receive occasional updates from Riptide Advisors. Unsubscribe at any time.",
+          forms: [
+            { _key: key(), _type: "formRef", title: "Mailing list", key: "mailing-list", successMessage: "Thanks for subscribing. You're on the list." },
+          ] },
         { _type: "contactBlock", showEmail: true, showLocation: true },
       ],
     },
@@ -324,29 +330,21 @@ async function build() {
     },
   ];
 
-  // Privacy policy: verbatim Wix text, imported as a DRAFT only (it is template placeholder copy).
+  // Privacy policy (2026-10-17): written to match the site's actual data handling — see
+  // scripts/content/privacy-policy-2026-10.mjs. Replaces the Wix template placeholder.
   const privacy = {
-    _id: "drafts.page-english-privacy-policy", _type: "page", title: "Privacy Policy", path: "/english-privacy-policy",
-    seo: seo("Privacy Policy | Riptide Advisors", "Riptide Advisors is a hedge fund platform serving emerging managers via SMA and LP investments.", og),
-    review: { status: "changes_requested", note: "BLOCKED: the Wix page is Wix's placeholder template, not a privacy policy. Replace with the policy supplied by compliance (verbatim)." },
+    _id: "page-english-privacy-policy", _type: "page", title: "Privacy Policy", path: "/english-privacy-policy",
+    seo: seo("Privacy Policy | Riptide Advisors", "How Riptide Advisors collects, uses, shares and protects information submitted through riptide-advisors.com, and the choices you have.", og),
     sections: [{
-      _key: key(), _type: "legalText", heading: "Privacy Policy", source: "Wix page /english-privacy-policy as of 2026-10-17 (template placeholder text)",
-      body: [
-        block("A legal disclaimer", "h2"),
-        block("The explanations and information provided on this page are only general and high-level explanations and information on how to write your own document of a Privacy Policy. You should not rely on this article as legal advice or as recommendations regarding what you should actually do, because we cannot know in advance what are the specific privacy policies you wish to establish between your business and your customers and visitors. We recommend that you seek legal advice to help you understand and to assist you in the creation of your own Privacy Policy."),
-        block("Privacy Policy - the basics", "h2"),
-        block("Having said that, a privacy policy is a statement that discloses some or all of the ways a website collects, uses, discloses, processes, and manages the data of its visitors and customers. It usually also includes a statement regarding the website’s commitment to protecting its visitors’ or customers’ privacy, and an explanation about the different mechanisms the website is implementing in order to protect privacy."),
-        block("Different jurisdictions have different legal obligations of what must be included in a Privacy Policy. You are responsible to make sure you are following the relevant legislation to your activities and location."),
-        block("What to include in the Privacy Policy", "h2"),
-        block("Generally speaking, a Privacy Policy often addresses these types of issues: the types of information the website is collecting and the manner in which it collects the data; an explanation about why is the website collecting these types of information; what are the website’s practices on sharing the information with third parties; ways in which your visitors and customers can exercise their rights according to the relevant privacy legislation; the specific practices regarding minors’ data collection; and much, much more."),
-        linkBlock("To learn more about this, check out our article “", "Creating a Privacy Policy", "https://support.wix.com/en/article/creating-a-privacy-policy", "”."),
-      ],
+      _key: key(), _type: "legalText", heading: "Privacy Policy", lastUpdated: PRIVACY_LAST_UPDATED,
+      source: "Drafted 2026-10-17 from the site's actual data handling at Tyler Errickson's request; compliance review recommended",
+      body: PRIVACY_BODY,
     }],
   };
 
   const withKeys = (p) => ({ _type: "page", ...p, sections: p.sections.map((s) => ({ _key: s._key ?? key(), ...s })) });
-  const published = [...team, ...disclaimers, settings, ...pages.map(withKeys)].map((d) => ({ ...d, review: { _type: "review", status: "editing" } }));
-  return { published, drafts: [privacy] };
+  const published = [...team, ...disclaimers, settings, ...pages.map(withKeys), withKeys(privacy)].map((d) => ({ ...d, review: { _type: "review", status: "editing" } }));
+  return { published, drafts: [] };
 }
 
 const stableHash = (doc) => createHash("sha256").update(JSON.stringify(doc)).digest("hex").slice(0, 16);

@@ -271,6 +271,7 @@ export const formsSection = defineType({
         defineField({ name: "key", type: "string", description: "Which form to render", options: { list: [
           { title: "Portfolio Manager", value: "portfolio-manager" },
           { title: "Allocator / Investor", value: "allocator" },
+          { title: "Mailing list sign-up", value: "mailing-list" },
         ] }, validation: (r) => r.required() }),
         defineField({ name: "hubspotFormId", title: "HubSpot form ID", type: "string", description: "Set in Phase 4" }),
         defineField({ name: "successMessage", type: "string", initialValue: "Thanks for submitting!" }),

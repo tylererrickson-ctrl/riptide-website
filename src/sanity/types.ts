@@ -72,7 +72,7 @@ export type Section = Base &
         members?: { _id: string; name: string; role?: string; linkedin?: string; bio?: string; photo?: SanityImage }[] }
     | { _type: "contactBlock"; heading?: string; body?: string; showEmail?: boolean; showLocation?: boolean; cta?: Link }
     | { _type: "formsSection"; heading?: string; intro?: string; note?: string;
-        forms?: { _key: string; title: string; key: "portfolio-manager" | "allocator"; hubspotFormId?: string; successMessage?: string }[] }
+        forms?: { _key: string; title: string; key: "portfolio-manager" | "allocator" | "mailing-list"; hubspotFormId?: string; successMessage?: string }[] }
     | { _type: "marquee"; items?: string[] }
     | { _type: "quote"; text: string; attribution?: string }
     | { _type: "cta"; heading: string; body?: string; link?: Link; note?: string }

@@ -1,5 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { validate, type FormKey } from "@/lib/forms";
+import { FORM_KEYS, validate, type FormKey } from "@/lib/forms";
 import { createLead, NotionNotConfigured } from "@/lib/notion";
 
 /**
@@ -30,7 +30,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
 
-  const form = body.form === "portfolio-manager" || body.form === "allocator" ? (body.form as FormKey) : null;
+  const form = FORM_KEYS.includes(body.form as FormKey) ? (body.form as FormKey) : null;
   if (!form) return NextResponse.json({ error: "Unknown form" }, { status: 400 });
 
   // Honeypot filled or submitted implausibly fast: pretend success, store nothing.

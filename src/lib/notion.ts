@@ -1,10 +1,11 @@
 import "server-only";
-import type { FormKey, Submission } from "./forms";
+import { MAILING_LIST_CONSENT, type FormKey, type Submission } from "./forms";
 
 /**
  * Writes website leads into Notion (server only; the key never reaches the browser).
  *  - Portfolio Manager form → existing "PM Pipeline" database (Lead Source = Intake Form)
  *  - Allocator form         → "Website Inquiries — Investors" database
+ *  - Mailing-list form      → "Website Mailing List" database (one row per email; repeat sign-ups are no-ops)
  * Mapping decisions: migration/forms.md
  */
 
@@ -82,23 +83,58 @@ function allocatorProperties(v: Submission) {
   };
 }
 
+function mailingListProperties(v: Submission, submittedAt: string) {
+  return {
+    Name: title(`${str(v.firstname)} ${str(v.lastname)}`.trim()),
+    Email: { email: str(v.email) },
+    "I am": multi(v.audience as string[]),
+    Status: select("Subscribed"),
+    Source: select("Website form"),
+    "Subscribed on": { date: { start: submittedAt } },
+    Consent: rich(MAILING_LIST_CONSENT),
+  };
+}
+
+const DATA_SOURCE_ENV: Record<FormKey, string> = {
+  "portfolio-manager": "NOTION_PM_DATA_SOURCE_ID",
+  allocator: "NOTION_INVESTOR_DATA_SOURCE_ID",
+  "mailing-list": "NOTION_MAILING_LIST_DATA_SOURCE_ID",
+};
+
 export class NotionNotConfigured extends Error {}
 
 export async function createLead(form: FormKey, values: Submission): Promise<{ id: string }> {
   const key = process.env.NOTION_API_KEY;
-  const dataSourceId = form === "portfolio-manager" ? process.env.NOTION_PM_DATA_SOURCE_ID : process.env.NOTION_INVESTOR_DATA_SOURCE_ID;
+  const dataSourceId = process.env[DATA_SOURCE_ENV[form]];
   if (!key || !dataSourceId) throw new NotionNotConfigured("Notion is not configured");
+  const headers = { Authorization: `Bearer ${key}`, "Notion-Version": NOTION_VERSION, "Content-Type": "application/json" };
 
   const submittedAt = new Date().toISOString();
-  const properties = form === "portfolio-manager" ? pmProperties(values, submittedAt) : allocatorProperties(values);
+
+  if (form === "mailing-list") {
+    // Already on the list? Don't add a duplicate row (and don't reveal membership to the caller).
+    const q = await fetch(`https://api.notion.com/v1/data_sources/${dataSourceId}/query`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ page_size: 1, filter: { property: "Email", email: { equals: str(values.email) } } }),
+      cache: "no-store",
+    });
+    if (q.ok) {
+      const found = (await q.json()) as { results: { id: string }[] };
+      if (found.results.length) return { id: found.results[0].id };
+    }
+  }
+
+  const properties =
+    form === "portfolio-manager"
+      ? pmProperties(values, submittedAt)
+      : form === "allocator"
+        ? allocatorProperties(values)
+        : mailingListProperties(values, submittedAt);
 
   const res = await fetch("https://api.notion.com/v1/pages", {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${key}`,
-      "Notion-Version": NOTION_VERSION,
-      "Content-Type": "application/json",
-    },
+    headers,
     body: JSON.stringify({ parent: { type: "data_source_id", data_source_id: dataSourceId }, properties }),
     cache: "no-store",
   });

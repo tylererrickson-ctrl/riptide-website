@@ -5,7 +5,7 @@ old_url,new_url,status,type,decision,notes
 /for-portfolio-managers,/for-portfolio-managers,200,keep,final,
 /our-principles,/our-principles,200,keep,final,Linked from main nav; canonical principles page
 /risk,/risk,200,keep,final,Hosts the Maximum Leverage Calculator (Wix HTML embed -> React component)
-/english-privacy-policy,/contact,302,keep,INTERIM,Path kept for the real policy. INTERIM (2026-10-17, post-launch): temporary 302 to /contact so the footer Privacy link is not a 404 until the policy is published - then delete this row
+/english-privacy-policy,/english-privacy-policy,200,keep,final,Path kept identical. Policy published 2026-10-17 (scripts/content/privacy-policy-2026-10.mjs); compliance review recommended
 /about,/about,200,keep,needs-review,Orphan (not in nav; only linked from /home1). Keep or 301 to /
 /services,/services,200,keep,needs-review,Orphan (only linked from /about). Keep or 301 to /
 /principles,/our-principles,301,consolidate,proposed,"Older duplicate of /our-principles. Footer + home ""Learn More"" link here today; new site will link /our-principles directly"
