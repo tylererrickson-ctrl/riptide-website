@@ -1,6 +1,6 @@
 old_url,new_url,status,type,decision,notes
-/,/,200,keep,final,Homepage (Wix page "HOME" / id z4jgd)
-/contact,/contact,200,keep,final,Two forms -> HubSpot in Phase 4
+/,/,200,keep,final,"Homepage (Wix page ""HOME"" / id z4jgd)"
+/contact,/contact,200,keep,final,Two forms -> Notion via /api/lead (Phase 4)
 /for-investors,/for-investors,200,keep,final,
 /for-portfolio-managers,/for-portfolio-managers,200,keep,final,
 /our-principles,/our-principles,200,keep,final,Linked from main nav; canonical principles page
@@ -8,8 +8,8 @@ old_url,new_url,status,type,decision,notes
 /english-privacy-policy,/english-privacy-policy,200,keep,final,Path kept identical. Page BODY is Wix placeholder text - real policy needed before launch
 /about,/about,200,keep,needs-review,Orphan (not in nav; only linked from /home1). Keep or 301 to /
 /services,/services,200,keep,needs-review,Orphan (only linked from /about). Keep or 301 to /
-/principles,/our-principles,301,consolidate,proposed,Older duplicate of /our-principles. Footer + home "Learn More" link here today; new site will link /our-principles directly
-/home1,/,301,consolidate,proposed,Unlinked draft homepage ("Riptide Advisors | Platform") with conflicting fund names
+/principles,/our-principles,301,consolidate,proposed,"Older duplicate of /our-principles. Footer + home ""Learn More"" link here today; new site will link /our-principles directly"
+/home1,/,301,consolidate,proposed,"Unlinked draft homepage (""Riptide Advisors | Platform"") with conflicting fund names"
 /copy-of-home,/,301,consolidate,proposed,Wix internal slug of the live homepage; reachable and returns 200 today
 /book-online,/contact,301,retire,proposed,Wix Bookings template leftover ($75-$200 sessions)
 /service-page/investment-workshop,/contact,301,retire,proposed,Wix Bookings template leftover; in Wix sitemap with robots=index
@@ -25,16 +25,16 @@ old_url,new_url,status,type,decision,notes
 /thank-you-page,/,301,retire,proposed,Wix eCommerce system page
 /analytics,https://riptide-analytics.vercel.app,301,existing-redirect,final,EXISTING Wix redirect (301 today). Also in main nav and Wix sitemap
 /profile,https://riptide-advisors.notion.site/248a9ae6ee9b80ca9c53c36d296ba8ca,301,existing-redirect,final,EXISTING Wix redirect (301 today)
-/meet-our-managers,/meet-our-managers,200,members-only,DECISION NEEDED,Wix Members Area page; linked from main nav and /for-investors. Needs auth on new site or 301 elsewhere
-/idea-hub,/idea-hub,200,members-only,DECISION NEEDED,Wix Members Area page; linked from /for-portfolio-managers
-/rof,/rof,200,members-only,DECISION NEEDED,"Wix Members Area page ""Riptide Opportunities Fund"""
-/rfcf,/rfcf,200,members-only,DECISION NEEDED,"Wix Members Area page ""Riptide Flexible Capital Fund"""
-/partners,/partners,200,members-only,DECISION NEEDED,Wix Members Area page
-/managers,/managers,200,members-only,DECISION NEEDED,"Wix Members Area page ""Manager Pipeline"""
-/capital,/capital,200,members-only,DECISION NEEDED,"Wix Members Area page ""Capital Pipeline"""
-/roles,/roles,200,members-only,DECISION NEEDED,Wix Members Area page
-/launch,/launch,200,members-only,DECISION NEEDED,"Wix Members Area page ""Riptide v. External Launch"""
-/ecm,/ecm,200,members-only,DECISION NEEDED,Wix Members Area page
+/meet-our-managers,/contact,302,members-only,DECISION NEEDED,Wix Members Area page; linked from main nav and /for-investors. Needs auth on new site or 301 elsewhere | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)
+/idea-hub,/contact,302,members-only,DECISION NEEDED,Wix Members Area page; linked from /for-portfolio-managers | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)
+/rof,/contact,302,members-only,DECISION NEEDED,"Wix Members Area page ""Riptide Opportunities Fund"" | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)"
+/rfcf,/contact,302,members-only,DECISION NEEDED,"Wix Members Area page ""Riptide Flexible Capital Fund"" | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)"
+/partners,/contact,302,members-only,DECISION NEEDED,Wix Members Area page | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)
+/managers,/contact,302,members-only,DECISION NEEDED,"Wix Members Area page ""Manager Pipeline"" | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)"
+/capital,/contact,302,members-only,DECISION NEEDED,"Wix Members Area page ""Capital Pipeline"" | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)"
+/roles,/contact,302,members-only,DECISION NEEDED,Wix Members Area page | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)
+/launch,/contact,302,members-only,DECISION NEEDED,"Wix Members Area page ""Riptide v. External Launch"" | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)"
+/ecm,/contact,302,members-only,DECISION NEEDED,Wix Members Area page | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)
 /account-settings,/,301,retire,proposed,Wix Members Area system page
 http://riptide-advisors.com/*,https://www.riptide-advisors.com/*,301,host,final,Today: http->https then apex->www (two hops). Vercel: make www primary and redirect apex in one hop
 https://riptide-advisors.com/*,https://www.riptide-advisors.com/*,301,host,final,www stays canonical (matches Wix canonical tags)

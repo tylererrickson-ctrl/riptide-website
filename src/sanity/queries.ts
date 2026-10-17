@@ -32,3 +32,7 @@ export const PAGE_QUERY = defineQuery(`
     }
   }
 `);
+
+export const SITEMAP_QUERY = defineQuery(`
+  *[_type == "page" && defined(path) && seo.noindex != true]{ path, _updatedAt } | order(path asc)
+`);
