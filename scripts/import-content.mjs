@@ -155,7 +155,6 @@ async function build() {
         { _type: "explainer", tone: "dark", rail: rail(undefined, "Our specialities"), heading: "Our specialities",
           tags: ["Uncorrelated returns", "Aligned partnerships", "Operational oversight", "Risk management"] },
         { _type: "cardGrid", rail: rail(undefined, "For portfolio managers"), heading: "For portfolio managers",
-          intro: "We provide the institutional infrastructure, operational support, and capital pathways portfolio managers need to launch strategies, scale efficiently, and focus on delivering performance.",
           cards: [
             { _key: key(), _type: "card", icon: await image("icon-capital-solutions.png", ""), title: "Capital solutions", subtitle: "A structured path for talent to grow.",
               body: "We invest through two multi-manager funds that create alignment with managers and sources of capital. We match this alignment with high-performance coaching and cutting-edge systems to optimize risk-adjusted returns. Managers and special situations become available for direct investment when the time is right.",
@@ -165,7 +164,6 @@ async function build() {
               cta: link("Explore more", "/for-portfolio-managers") },
           ] },
         { _type: "cardGrid", rail: rail(undefined, "For capital partners"), heading: "For capital partners",
-          intro: "We provide capital partners with differentiated access to high-quality investment strategies, supported by institutional-grade infrastructure and disciplined risk management.",
           cards: [
             { _key: key(), _type: "card", title: "Multi-manager funds", subtitle: "A flexible architecture designed for different investor needs.",
               body: "Riptide offers two multi-manager funds designed to generate uncorrelated, alpha-rich returns. Capital is deployed via SMAs allowing investments to sit within one fund to maximize risk management, maintain tax efficiency, simplify reporting, and provide complete transparency into holdings and performance.",
