@@ -182,7 +182,7 @@ const sections = [
       fact("Incentive Fee", "20%"),
       fact("Mid/Back Office", "Cartesian FinOps"),
       fact("High-Water Mark", "Yes"),
-      fact("Legal", "Cole-Frieman & Mallon"),
+      fact("Legal", "Royer Cooper Cohen Braunfeld"),
       fact("Auditor", "Citrin Cooperman"),
       fact("Compliance", "Salus GRC"),
     ],

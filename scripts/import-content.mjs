@@ -191,7 +191,7 @@ async function build() {
             ["Prime brokerage", "Clear Street and Goldman Sachs"],
             ["Compliance", "Salus GRC"],
             ["Research and data", "Bloomberg, FactSet, InSync Analytics, and proprietary process enhancement and talent development systems."],
-            ["Legal, fund administration, and audit", "Cole-Frieman, Ascent Group, and Citrin Cooperman"],
+            ["Legal, fund administration, and audit", "Royer Cooper Cohen Braunfeld, Ascent Group, and Citrin Cooperman"],
           ].map(([title, body]) => ({ _key: key(), _type: "row", title, body })),
           cta: link("Get started", "/contact") },
         { _type: "objectives", rail: rail("04", "Scaling"), heading: "Scaling investment strategies",
