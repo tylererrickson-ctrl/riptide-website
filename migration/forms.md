@@ -26,7 +26,10 @@ through the Notion API. No third-party scripts load on the page and no cookies a
 | — | Lead Source = **Intake Form**, Date = submission date | |
 | All answers as typed | **Notes** | Every role, AUM, prime broker and idea value is kept verbatim here |
 
-The site **never creates new select options** in PM Pipeline. Status is left at the database default.
+The site **never creates new select options** in PM Pipeline. New leads are given **Status = "Intro Stage: TE"**, the first pipeline stage.
+(The database default status is "Strategy Review (SG)", which is why the status is set explicitly.)
+
+**Verified end to end on staging 2026-10-17:** both forms were submitted in a real browser and landed in Notion with every field mapped as above.
 
 ### Allocator → Website Inquiries — Investors
 Name, Email, Allocator Type / Title / Mandate (multi-select, same options as the form), Investment Size,

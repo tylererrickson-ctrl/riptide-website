@@ -62,6 +62,7 @@ function pmProperties(v: Submission, submittedAt: string) {
     "Strategy Description": rich(str(v.strategy_description)),
     "How can Riptide help you?": rich(str(v.how_can_riptide_help)),
     "Lead Source": select("Intake Form"),
+    Status: { status: { name: "Intro Stage: TE" } }, // first pipeline stage (Tyler, 2026-10-17)
     Date: { date: { start: submittedAt.slice(0, 10) } },
     Notes: rich(notes),
   };
