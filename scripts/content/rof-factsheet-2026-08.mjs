@@ -170,7 +170,7 @@ const sections = [
     heading: "Fund Information",
     facts: [
       fact("Inception", "Jan 2026"),
-      fact("Min Invest.", "$1.0M"),
+      fact("Min Invest.", "$250K"),
       fact("Structure / Domicile", "Delaware Series LLC"),
       fact("Subscription", "Monthly"),
       fact("Strategy AUM", "~$60M"),
