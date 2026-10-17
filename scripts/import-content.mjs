@@ -135,7 +135,7 @@ async function build() {
       seo: seo("Riptide Advisors | Emerging Managers", "Riptide Advisors. Uncorrelated Returns. SMAs. Extraordinary People.", await image("logo-horizontal-color-600.png", "Riptide Advisors")),
       sections: [
         { _type: "heroPortal", eyebrow: "Riptide Advisors",
-          heading: "Uncorrelated returns driven by extraordinary people",
+          heading: "Navigating Alternative Investments",
           subheading: "We offer multi-manager funds and custom managed accounts to allocators seeking early access to differentiated investment performance.",
           image: await image("home-hero-banner.png", ""),
           panels: [
