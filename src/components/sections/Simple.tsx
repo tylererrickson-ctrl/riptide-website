@@ -47,28 +47,42 @@ export function TeamGrid({ s, first }: { s: Of<"teamGrid">; first: boolean }) {
         </Heading>
       )}
       <ul className="team" style={{ marginTop: "clamp(32px, 5vw, 64px)" }}>
-        {s.members?.map((m) => (
-          <li key={m._id} className="member" data-reveal>
+        {s.members?.map((m) => {
+          const card = (
             <figure>
               <div className="member-photo">
                 <SanityImg image={m.photo} sizes="(min-width: 900px) 30vw, (min-width: 600px) 45vw, 100vw" width={1200} />
+                {m.linkedin && (
+                  <span className="member-linkedin micro" aria-hidden="true">
+                    LinkedIn ↗
+                  </span>
+                )}
               </div>
               <figcaption>
-                <h3>
-                  {m.linkedin ? (
-                    <a href={m.linkedin} target="_blank" rel="noopener noreferrer">
-                      {m.name}
-                      <span className="sr-only"> on LinkedIn (opens in a new tab)</span>
-                    </a>
-                  ) : (
-                    m.name
-                  )}
-                </h3>
+                <h3>{m.name}</h3>
                 {m.role && <p className="micro">{m.role}</p>}
               </figcaption>
             </figure>
-          </li>
-        ))}
+          );
+          return (
+            <li key={m._id} className="member" data-reveal>
+              {/* Whole card (photo + name) is one link to the person's LinkedIn profile. */}
+              {m.linkedin ? (
+                <a
+                  className="member-link"
+                  href={m.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${m.name}${m.role ? `, ${m.role}` : ""} on LinkedIn (opens in a new tab)`}
+                >
+                  {card}
+                </a>
+              ) : (
+                card
+              )}
+            </li>
+          );
+        })}
       </ul>
     </Shell>
   );

@@ -548,12 +548,18 @@ a.cta-row:hover .arrow { transform: translateX(10px); color: var(--accent); }
 
 .team { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(24px, 3vw, 40px); grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
 .member figure { margin: 0; }
-.member-photo { aspect-ratio: 4 / 5; overflow: hidden; background: var(--surface-2); }
+.member-photo { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--surface-2); }
+.member-link { display: block; color: inherit; text-decoration: none; }
+.member-link:hover h3, .member-link:focus-visible h3 { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
+.member-linkedin {
+  position: absolute; right: 12px; bottom: 12px; padding: 6px 10px; background: rgb(6 19 31 / 0.78); color: #e8f0f4;
+  opacity: 0; transform: translateY(4px); transition: opacity 300ms var(--ease), transform 300ms var(--ease);
+}
+.member-link:hover .member-linkedin, .member-link:focus-visible .member-linkedin { opacity: 1; transform: none; }
+@media (hover: none) { .member-linkedin { opacity: 1; transform: none; } }
 .member-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05); transition: filter 600ms var(--ease), transform 900ms var(--ease); }
 .member:hover .member-photo img, .member:focus-within .member-photo img { filter: none; transform: scale(1.03); }
 .member h3 { margin-top: 16px; font-size: 1.375rem; }
-.member h3 a { text-decoration: none; }
-.member h3 a:hover { text-decoration: underline; }
 .member .micro { margin-top: 6px; }
 
 .contact-details { display: grid; gap: 0; margin: 32px 0 0; border-top: 1px solid var(--line); max-width: 640px; }
