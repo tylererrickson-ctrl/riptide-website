@@ -29,7 +29,7 @@ const row = (cells, total = false) => ({ _key: key(), _type: "tableRow", cells, 
 const sections = [
   {
     _type: "heroPage",
-    eyebrow: "Multi-strategy strategy · Factsheet: August 2026 · For qualified purchasers only",
+    eyebrow: "Multi-strategy fund · Factsheet: August 2026 · For qualified purchasers only",
     heading: "Riptide Opportunities Fund",
     intro:
       "The Riptide Opportunities Fund is a multi-strategy platform built around an aligned capital philosophy. Portfolio managers contribute a first-loss capital buffer, while Opportunities Fund investors hold capital that sits senior to that buffer in the loss waterfall. The result is a structure where every participant (platform, manager, and allocator) shares a common incentive to generate strong, risk-adjusted performance.",
