@@ -1,0 +1,8 @@
+.env*
+!.env.example
+/argan.ai*
+/Riptide Advisors _ Emerging Managers*
+/node_modules
+/.next
+/content
+/migration
