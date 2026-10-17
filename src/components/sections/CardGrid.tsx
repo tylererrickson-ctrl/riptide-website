@@ -8,7 +8,7 @@ export function CardGrid({ s, first }: { s: S; first: boolean }) {
   return (
     <Shell s={s}>
       {(s.heading || s.intro) && (
-        <div className="grid-2" style={{ marginBottom: "clamp(32px, 5vw, 64px)" }} data-reveal>
+        <div className={s.intro ? "grid-2" : undefined} style={{ marginBottom: "clamp(32px, 5vw, 64px)" }} data-reveal>
           {s.heading && <Heading first={first}>{s.heading}</Heading>}
           {s.intro && <p className="lead">{s.intro}</p>}
         </div>
