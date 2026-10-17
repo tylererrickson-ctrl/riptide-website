@@ -3,6 +3,7 @@
  * Creates/updates the Riptide Opportunities Fund performance page (/rof) from
  * "Riptide_Opportunities_Fund_Factsheet_August_2026.pdf" (supplied by Tyler, 2026-10-17).
  * All text is verbatim from the factsheet; all figures are as printed (none recomputed).
+ * Exception (Tyler, 2026-10-17): prime brokers updated to "Clear Street, Goldman Sachs".
  *   node --env-file=.env.local scripts/content/rof-factsheet-2026-08.mjs
  * Future monthly updates: edit the page in the Studio (review → approve → publish).
  */
@@ -156,7 +157,7 @@ const sections = [
     heading: "Strategy",
     body: [
       block(
-        "The platform offers institutional-grade operational infrastructure including execution management (Eze Castle), risk management (Arcana), compliance (Salus GRC), prime brokerage (Goldman Sachs, Pershing), and middle/back office (Cartesian FinOps). Portfolio managers benefit from this turnkey support while maintaining full investment autonomy. By removing the operational burden of launching and running a fund, the platform enables talented portfolio managers to focus exclusively on generating alpha.",
+        "The platform offers institutional-grade operational infrastructure including execution management (Eze Castle), risk management (Arcana), compliance (Salus GRC), prime brokerage (Clear Street, Goldman Sachs), and middle/back office (Cartesian FinOps). Portfolio managers benefit from this turnkey support while maintaining full investment autonomy. By removing the operational burden of launching and running a fund, the platform enables talented portfolio managers to focus exclusively on generating alpha.",
       ),
       block(
         "The fund allocates across macro, systematic, fundamental long/short, market neutral, and tactical equity strategies. Risk attribution is diversified across strategy types to minimize correlation and drawdown risk. At the fund level, Riptide enforces strict portfolio construction guardrails (including position limits, leverage caps, stop-losses, and daily risk monitoring) designed to protect investor capital across all market environments. The Riptide Opportunities Fund is now live on the NFS/Fidelity platform for subscriptions.",
@@ -175,7 +176,7 @@ const sections = [
       fact("Strategy AUM", "~$60M"),
       fact("Redemption", "Quarterly"),
       fact("Currency", "USD"),
-      fact("Prime Broker", "Goldman Sachs, Pershing"),
+      fact("Prime Broker", "Clear Street, Goldman Sachs"),
       fact("Mgmt Fee", "Pass-Thru"),
       fact("Fund Admin", "Ascent Group"),
       fact("Incentive Fee", "20%"),
