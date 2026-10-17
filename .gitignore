@@ -1,0 +1,8 @@
+# Reference page captures saved from the browser (not part of the project)
+/argan.ai*
+/Riptide Advisors _ Emerging Managers*
+node_modules/
+.next/
+.env*
+!.env.example
+.vercel
