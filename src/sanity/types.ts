@@ -70,7 +70,7 @@ export type Section = Base &
         rows?: { _key: string; title: string; body?: string }[]; cta?: Link }
     | { _type: "teamGrid"; heading?: string;
         members?: { _id: string; name: string; role?: string; linkedin?: string; bio?: string; photo?: SanityImage }[] }
-    | { _type: "contactBlock"; heading?: string; body?: string; showEmail?: boolean; showLocation?: boolean }
+    | { _type: "contactBlock"; heading?: string; body?: string; showEmail?: boolean; showLocation?: boolean; cta?: Link }
     | { _type: "formsSection"; heading?: string; intro?: string; note?: string;
         forms?: { _key: string; title: string; key: "portfolio-manager" | "allocator"; hubspotFormId?: string; successMessage?: string }[] }
     | { _type: "marquee"; items?: string[] }

@@ -85,6 +85,7 @@ export function ContactBlock({ s, first, settings }: { s: Of<"contactBlock">; fi
             </Heading>
           )}
           {s.body && <p className="lead">{s.body}</p>}
+          {s.cta && <Cta link={s.cta} accent />}
         </div>
         <dl className="contact-details" data-reveal>
           {s.showEmail !== false && settings?.email && (

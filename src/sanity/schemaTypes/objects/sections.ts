@@ -250,6 +250,7 @@ export const contactBlock = defineType({
     defineField({ name: "body", type: "text", rows: 3 }),
     defineField({ name: "showEmail", type: "boolean", initialValue: true }),
     defineField({ name: "showLocation", type: "boolean", initialValue: true }),
+    defineField({ name: "cta", title: "Button", type: "link" }),
   ],
   preview: preview("heading", "Contact details"),
 });

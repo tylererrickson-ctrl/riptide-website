@@ -111,7 +111,6 @@ async function build() {
       linkItem("Analytics", "/analytics"),
       linkItem("For investors", "/for-investors"),
       linkItem("For portfolio managers", "/for-portfolio-managers"),
-      linkItem("Meet our managers", "/meet-our-managers"),
       linkItem("Principles", "/our-principles"),
       linkItem("Risk", "/risk"),
     ],
@@ -179,7 +178,7 @@ async function build() {
         { _type: "teamGrid", rail: rail("06", "Our team"), heading: "Our team", members: teamRefs },
         { _type: "contactBlock", rail: rail("07", "Connect"), heading: "Connect with us",
           body: "Ready to explore how Riptide can support your investment goals? We’re here to help you build, scale, or allocate with clarity and confidence.",
-          showEmail: true, showLocation: true },
+          showEmail: true, showLocation: true, cta: link("Contact us", "/contact") },
       ],
     },
     {
@@ -231,7 +230,7 @@ async function build() {
         { _type: "heroPage", eyebrow: "For investors", heading: "For investors",
           intro: "We provide capital partners with differentiated access to high-quality investment strategies, supported by institutional-grade infrastructure and disciplined risk management.",
           image: await image("for-investors-banner.jpg", "Waves breaking on a rocky shore"),
-          ctas: [linkItem("Meet our managers", "/meet-our-managers"), linkItem("Contact now", "/contact")] },
+          ctas: [linkItem("Contact now", "/contact")] },
         { _type: "explainer", rail: rail("01", "Multi-manager funds"), label: "Multi-manager funds", heading: "A flexible architecture designed for different investor needs.",
           body: [
             block("Riptide offers a unified investing experience through two multi-manager funds and direct investment:"),
