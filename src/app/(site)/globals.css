@@ -374,20 +374,22 @@ h2.rail-label { font: inherit; letter-spacing: inherit; line-height: inherit; te
   padding: clamp(16px, 2.4vh, 24px) var(--gutter); background: rgb(6 19 31 / 0.6); backdrop-filter: blur(6px);
   border-top: 1px solid var(--line);
 }
-.portal-strip h2 { font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.25rem); letter-spacing: -0.03em; }
+.portal-strip h2 { font-size: var(--fs-panel); letter-spacing: -0.04em; }
+/* Same rhythm as a panel: label → title uses the panel row gap, title → text 12px (like .tagline). */
+.portal-strip-title { margin-top: clamp(10px, 2vh, 24px); }
 .portal-strip h2.portal-strip-label { font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: 0.14em; font-weight: 500; color: var(--ink); }
 .portal-strip-list {
-  list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.15em 0.7em;
-  justify-content: flex-start; color: var(--ink);
-  font-size: var(--fs-panel); letter-spacing: -0.04em; line-height: 1.1;
+  list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 1.6em;
+  justify-content: flex-start; color: var(--ink-muted);
+  font-size: var(--fs-small); line-height: 1.6; /* same as the panel descriptions under "For Investors" */
 }
-.portal-strip-list li { display: inline-flex; align-items: center; gap: 0.35em; white-space: nowrap; }
-.portal-strip-list li::before { content: ""; flex: none; width: 0.16em; height: 0.16em; border-radius: 50%; background: var(--brand-light); }
+.portal-strip-list li { display: inline-flex; align-items: center; gap: 0.6em; white-space: nowrap; }
+.portal-strip-list li::before { content: ""; flex: none; width: 4px; height: 4px; border-radius: 50%; background: var(--brand-light); }
 @media (min-width: 761px) {
   /* Label over the principles on the left, link on the right. */
   .portal-strip:has(.portal-strip-list) {
     display: grid; grid-template-columns: 1fr auto; grid-template-areas: "label link" "list link";
-    row-gap: 10px; column-gap: clamp(24px, 3vw, 48px); align-items: center;
+    row-gap: 12px; column-gap: clamp(24px, 3vw, 48px); align-items: center;
   }
   .portal-strip:has(.portal-strip-list) > div:first-child { grid-area: label; }
   .portal-strip:has(.portal-strip-list) > .portal-strip-list { grid-area: list; }
@@ -395,7 +397,7 @@ h2.rail-label { font: inherit; letter-spacing: inherit; line-height: inherit; te
 }
 @media (max-width: 760px) {
   .portal-strip { flex-direction: column; align-items: flex-start; }
-  .portal-strip-list { flex-direction: column; gap: 4px; }
+  .portal-strip-list { flex-direction: column; gap: 4px; margin-top: -4px; } /* strip gap 16px - 4 = 12px, as in panels */
 }
 
 /* =========================================================================
@@ -428,6 +430,8 @@ h2.rail-label { font: inherit; letter-spacing: inherit; line-height: inherit; te
 .statement-text .w { transition: color 200ms linear; color: var(--ink-muted); } /* dim state stays >= 4.5:1 */
 .statement-text .w[data-on="true"] { color: var(--ink); }
 .statement-body { margin-top: clamp(16px, 2.4vw, 32px); max-width: 60ch; }
+/* Body sentence matches the panel descriptions under "For Investors" on the home page. */
+.statement-body .lead { font-size: var(--fs-small); line-height: 1.6; color: var(--ink-muted); max-width: 48ch; }
 @media (prefers-reduced-motion: reduce) {
   .statement-track { height: auto; }
   .statement-sticky { position: static; }

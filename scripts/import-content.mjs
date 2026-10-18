@@ -151,7 +151,7 @@ async function build() {
               tagline: "We provide the institutional infrastructure, operational support, and capital pathways portfolio managers need to launch strategies, scale efficiently, and focus on delivering performance.",
               link: link("Explore more", "/for-portfolio-managers") },
           ],
-          strip: { tagline: "Guiding values for our firm",
+          strip: { title: "Our Principles", tagline: "Guiding values for our firm",
             items: ["Earn Trust", "Create Alignment", "Build Lasting Partnerships", "Play to Win", "Improve Constantly"],
             link: link("Read our principles", "/our-principles") } },
         { _type: "statement", rail: rail(undefined, "Our philosophy"), eyebrow: "Our philosophy",

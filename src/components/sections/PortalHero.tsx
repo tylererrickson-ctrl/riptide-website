@@ -51,9 +51,10 @@ export function PortalHero({ s, first }: { s: S; first: boolean }) {
       {(s.strip?.title || s.strip?.tagline) && (
         <div className="portal-strip">
           <div>
-            {s.strip.title ? <h2>{s.strip.title}</h2> : null}
-            {s.strip.tagline &&
-              (s.strip.title ? <p className="micro">{s.strip.tagline}</p> : <h2 className="micro portal-strip-label">{s.strip.tagline}</h2>)}
+            {/* Mirrors a panel: small label, then a panel-size title ("Our Principles"). */}
+            {s.strip.title && s.strip.tagline && <p className="micro">{s.strip.tagline}</p>}
+            {s.strip.title ? <h2 className="portal-strip-title">{s.strip.title}</h2> : null}
+            {!s.strip.title && s.strip.tagline && <h2 className="micro portal-strip-label">{s.strip.tagline}</h2>}
           </div>
           {!!s.strip.items?.length && (
             <ol className="portal-strip-list">
