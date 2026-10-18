@@ -350,10 +350,17 @@ h2.rail-label { font: inherit; letter-spacing: inherit; line-height: inherit; te
 }
 .portal-title { font-size: clamp(2.75rem, min(1rem + 6vw, 11svh), 7.5rem); max-width: 15ch; letter-spacing: -0.045em; line-height: 0.92; margin-top: 16px; }
 .portal-sub { margin-top: clamp(12px, 2.4vh, 24px); max-width: 52ch; color: var(--ink-muted); font-size: var(--fs-lead); }
+/* Desktop (2026-10-18, Tyler): headline sits a fixed distance under the header instead of being pushed
+   to the bottom of the opening screen; any spare height goes between the subtext and the panels. */
+@media (min-width: 900px) {
+  .portal-statement { justify-content: flex-start; padding-top: calc(var(--header-h) + clamp(28px, 4.5vh, 56px)); }
+  /* Tighter gap after the philosophy statement and after the team grid. */
+  .section-statement, .section-teamGrid { padding-bottom: calc(var(--section-y) * 0.4); }
+}
 /* Short laptop screens (≤ 820px tall): tighten spacing so the opening section fits one screen.
    Panel/principles type sizes are unchanged; only the big headline and gaps flex. */
 @media (min-width: 900px) and (max-height: 820px) {
-  .portal-statement { padding-top: calc(var(--header-h) + 8px); padding-bottom: clamp(12px, 2.5vh, 32px); }
+  .portal-statement { padding-top: calc(var(--header-h) + 28px); padding-bottom: clamp(12px, 2.5vh, 32px); }
   .portal-title { font-size: clamp(2.5rem, min(1rem + 6vw, 9.5svh), 7.5rem); margin-top: 10px; }
   .portal-sub { margin-top: 10px; font-size: 1.0625rem; }
   .portal-panel { padding-block: clamp(12px, 2vh, 20px); gap: clamp(8px, 1.6vh, 16px); }
