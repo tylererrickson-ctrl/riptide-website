@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "node scripts/check-indexing.mjs",
+    "prebuild": "node scripts/clear-content-cache.mjs && node scripts/check-indexing.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
