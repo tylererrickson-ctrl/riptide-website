@@ -114,6 +114,7 @@ async function build() {
       linkItem("For Portfolio Managers", "/for-portfolio-managers"),
       linkItem("Performance", "/rof"),
       linkItem("Analytics", "/analytics"),
+      linkItem("Reports", "/reports"),
       linkItem("Principles", "/our-principles"),
       linkItem("Risk", "/risk"),
     ],
@@ -124,6 +125,7 @@ async function build() {
       linkItem("For Portfolio Managers", "/for-portfolio-managers"),
       linkItem("Performance", "/rof"),
       linkItem("Analytics", "/analytics"),
+      linkItem("Reports", "/reports"),
       linkItem("Principles", "/our-principles"),
       linkItem("Risk", "/risk"),
       linkItem("Contact Us", "/contact"),
@@ -330,8 +332,18 @@ async function build() {
       ctas: [linkItem("Analytics Portal", "https://riptide-analytics.vercel.app")] }],
   };
 
+  // Reports landing page (2026-10-18): button out to the allocator portal.
+  // Added live as Studio drafts via scripts/add-reports-page.mjs; mirrored here.
+  const reports = {
+    _id: "page-reports", _type: "page", title: "Reports", path: "/reports",
+    seo: seo("Strategy Reports | Riptide Advisors", "Riptide Strategy Reports: the secure portal where allocators view the latest finalized performance reports for their strategies.", og),
+    sections: [{ _type: "heroPage", heading: "Strategy Reports",
+      intro: "Strategy Reports is our secure portal for allocators to view the latest finalized performance reports for the strategies they follow and to request updates.",
+      ctas: [linkItem("Reports Portal", "https://portal.riptide-advisors.com")] }],
+  };
+
   const withKeys = (p) => ({ _type: "page", ...p, sections: p.sections.map((s) => ({ _key: s._key ?? key(), ...s })) });
-  const published = [...team, ...disclaimers, settings, ...pages.map(withKeys), withKeys(privacy), withKeys(disclaimer), withKeys(analytics)].map((d) => ({ ...d, review: { _type: "review", status: "editing" } }));
+  const published = [...team, ...disclaimers, settings, ...pages.map(withKeys), withKeys(privacy), withKeys(disclaimer), withKeys(analytics), withKeys(reports)].map((d) => ({ ...d, review: { _type: "review", status: "editing" } }));
   return { published, drafts: [] };
 }
 

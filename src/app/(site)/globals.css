@@ -354,6 +354,11 @@ h2.rail-label { font: inherit; letter-spacing: inherit; line-height: inherit; te
    to the bottom of the opening screen; any spare height goes between the subtext and the panels. */
 @media (min-width: 900px) {
   .portal-statement { justify-content: flex-start; padding-top: calc(var(--header-h) + clamp(28px, 4.5vh, 56px)); }
+  /* (2026-10-18, Tyler) The spare screen height used to land between the subtext and the panels
+     (172px on a 1080p screen). The opening section now ends where its content ends, with a fixed
+     modest gap after the subtext. */
+  .portal { min-height: auto; }
+  .portal-statement { padding-bottom: clamp(28px, 3.5vh, 44px); }
   /* Tighter gap after the philosophy statement and after the team grid. */
   .section-statement, .section-teamGrid { padding-bottom: calc(var(--section-y) * 0.4); }
 }
