@@ -1,10 +1,13 @@
 /**
  * Runs before every build (npm "prebuild"). Vercel restores `.next/cache` from the previous deployment,
- * and `.next/cache/fetch-cache` holds cached Sanity query results. Reusing it means a deploy can
- * prerender pages with content from before the latest publish — and they stay stale until the next
- * publish (seen twice on 2026-10-17). Compiled-code caches (turbopack) are kept, so builds stay fast.
+ * and reusing it has shipped stale output twice:
+ *  - `.next/cache/fetch-cache` held old Sanity results, so pages prerendered pre-publish content;
+ *  - `.next/cache/turbopack` (persistent compile cache) failed to pick up a globals.css change, so a
+ *    deploy built from the new commit still served the previous stylesheet (2026-10-18).
+ * The whole cache is cleared so every build compiles and prerenders from the committed source + live CMS.
+ * Cost: a slower cold compile (well under a minute for this site).
  */
 import { rmSync } from "node:fs";
 
-rmSync(".next/cache/fetch-cache", { recursive: true, force: true });
-console.log("Cleared cached CMS content (.next/cache/fetch-cache) so this build prerenders fresh content.");
+rmSync(".next/cache", { recursive: true, force: true });
+console.log("Cleared .next/cache so this build compiles and prerenders from scratch.");
