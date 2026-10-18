@@ -43,3 +43,5 @@ https://riptide-advisors.com/*,https://www.riptide-advisors.com/*,301,host,final
 /privacy-policy,/english-privacy-policy,301,alias,final,Short URL for the Privacy Policy (2026-10-17)
 /terms,/disclaimer,301,alias,final,Short URL for the Website Disclaimer and Terms of Use (2026-10-17)
 /terms-of-use,/disclaimer,301,alias,final,Short URL for the Website Disclaimer and Terms of Use (2026-10-17)
+/book-spencer,https://outlook.office.com/book/RiptideAdvisors@riptide-advisors.com/s/rW3m1zIUj0O3AQPwcGuwAg2?ismsaljsauthenabled=,302,booking,final,Spencer Gantsoudes - Microsoft Bookings (carried over from Wix 2026-10-18; target read from the old Wix redirect)
+/book-tyler,https://outlook.office.com/book/RiptideAdvisors@riptide-advisors.com/s/73t_CLsXSU-pi1fF3Osd5A2?ismsaljsauthenabled=,302,booking,final,Tyler Errickson - Microsoft Bookings (carried over from Wix 2026-10-18; target read from the old Wix redirect)
