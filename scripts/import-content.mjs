@@ -141,7 +141,7 @@ async function build() {
       sections: [
         { _type: "heroPortal", eyebrow: "Riptide Advisors",
           heading: "Navigating Alternative Investments",
-          subheading: "We offer multi-strategy funds, custom managed accounts and direct investments to investors seeking access to differentiated investment performance.",
+          subheading: "We offer multi-strategy funds, custom managed accounts and direct investments that drive differentiated investment performance.",
           image: await image("home-hero-banner.png", ""),
           panels: [
             { _key: key(), _type: "portalPanel", meta: "Multi-strategy funds · Custom managed accounts", title: "For Investors",
