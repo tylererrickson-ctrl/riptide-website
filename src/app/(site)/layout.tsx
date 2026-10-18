@@ -10,12 +10,14 @@ import { SiteHeader, SiteHeaderWithPath } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { IntroLoader } from "@/components/IntroLoader";
 import { RevealObserver } from "@/components/RevealObserver";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { OrganizationJsonLd } from "@/components/OrganizationJsonLd";
 import type { SiteSettings } from "@/sanity/types";
 import "./globals.css";
 
-/** Runs before first paint: JS flag, saved theme, intro-seen flag. Dependency-free. */
+/** Runs before first paint: JS flag, page opens at the top on reload, saved theme, intro-seen flag. Dependency-free. */
 const preflight = `(function(){var h=document.documentElement;h.classList.add("js");
+try{if("scrollRestoration" in history)history.scrollRestoration="manual"}catch(e){}
 try{var t=localStorage.getItem("rt-theme");if(t==="light"||t==="dark")h.setAttribute("data-theme",t)}catch(e){}
 try{if(sessionStorage.getItem("rt-intro"))h.setAttribute("data-intro-seen","")}catch(e){h.setAttribute("data-intro-seen","")}})();`;
 
@@ -69,6 +71,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
         <SiteFooter settings={settings} />
         <Suspense fallback={null}>
           <RevealObserver />
+          <ScrollToTop />
         </Suspense>
         <SanityLive includeDrafts={isDraftMode} />
         {isDraftMode && <VisualEditing />}

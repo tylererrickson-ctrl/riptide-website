@@ -139,7 +139,7 @@ async function build() {
       _id: "page-home", title: "Home", path: "/",
       seo: seo("Riptide Advisors | Emerging Managers", "Riptide Advisors. Uncorrelated Returns. SMAs. Extraordinary People.", await image("logo-horizontal-color-600.png", "Riptide Advisors")),
       sections: [
-        { _type: "heroPortal", eyebrow: "Riptide Advisors",
+        { _type: "heroPortal",
           heading: "Navigating Alternative Investments",
           subheading: "We offer multi-strategy funds, custom managed accounts and direct investments that drive uncorrelated investment performance.",
           image: await image("riptide-art-home.jpg", ""),
@@ -168,7 +168,7 @@ async function build() {
       _id: "page-for-portfolio-managers", title: "For Portfolio Managers", path: "/for-portfolio-managers",
       seo: seo("For Portfolio Managers | Riptide Advisors", null, og),
       sections: [
-        { _type: "heroPage", eyebrow: "For Portfolio Managers", heading: "For Portfolio Managers",
+        { _type: "heroPage", heading: "For Portfolio Managers",
           intro: "We provide the institutional infrastructure, operational support, and capital pathways portfolio managers need to launch strategies, scale efficiently, and focus on delivering performance.",
           ctas: [linkItem("Get started", "/contact")] },
         { _type: "stepper", rail: rail("01", "Capital solutions"), eyebrow: "Capital solutions", heading: "A Structured Path for Talent to Grow.",
@@ -208,7 +208,7 @@ async function build() {
       _id: "page-for-investors", title: "For Investors", path: "/for-investors",
       seo: seo("For Investors | Riptide Advisors", null, og),
       sections: [
-        { _type: "heroPage", eyebrow: "For Investors", heading: "For Investors",
+        { _type: "heroPage", heading: "For Investors",
           intro: "We provide capital partners with differentiated access to high-quality investment strategies, supported by institutional-grade infrastructure and disciplined risk management.",
           ctas: [linkItem("Contact now", "/contact")] },
         { _type: "explainer", rail: rail("01", "Multi-strategy funds"), label: "Multi-strategy funds", heading: "A flexible architecture designed for different investor needs.",
