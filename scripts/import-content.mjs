@@ -306,27 +306,7 @@ async function build() {
         { _type: "contactBlock", showEmail: true, showLocation: true },
       ],
     },
-    {
-      _id: "page-about", title: "About", path: "/about",
-      seo: seo("About | Riptide Advisors", null, og),
-      sections: [
-        { _type: "heroPage", heading: "About Riptide",
-          intro: "Riptide Advisors is an investment firm focused on delivering consistent, high-quality returns through a transparent, talent-driven approach. Our platform connects talented investment professionals with the resources, support, and flexibility necessary to build and manage their own businesses. By fostering a collaborative and accountable environment, we aim to align the interests of our investment teams with Riptide’s various stakeholders, creating meaningful opportunities for growth and strong investment outcomes for our capital partners.",
-          ctas: [linkItem("Discover Services", "/services")] },
-      ],
-    },
-    {
-      _id: "page-services", title: "Services", path: "/services",
-      seo: seo("Services | Riptide Advisors", null, og),
-      sections: [
-        { _type: "explainer", heading: "How We Serve" },
-        { _type: "explainer", rail: rail("01", "Investment managers"), heading: "Investment Managers",
-          body: [block("We offer emerging and established investment talent a supportive platform to build verifiable, portable track records, backed by robust business formation support and access to diversified capital. Our scalable infrastructure features AI-driven research and integrated risk management tools, enabling managers to focus on their investment process. We seek individuals who value a balance of autonomy and partnership that is elusive in more traditional alternatives, while aligning success across all Riptide stakeholders. Rather than impose a rigid one-size-fits-all framework, we empower our managers with the resources and flexibility needed to maximize their potential.")] },
-        { _type: "explainer", rail: rail("02", "Investors"), heading: "Investors",
-          body: [block("We create alignment in our strategies through direct management investment. We match this alignment with high-performance coaching and cutting-edge systems to optimize risk-adjusted returns. Our strategic partners gain access to talent and all our LPs invest alongside motivated managers at peak performance. We design our investment products to align the right talent with the right capital partner objectives to maximize outcomes for managers, capital partners and the firm.")],
-          ctas: [linkItem("Contact Us", "/contact")] },
-      ],
-    },
+    // page-about and page-services (old Wix pages) retired 2026-10-18 — /about and /services 301 to /.
   ];
 
   // Legal pages (2026-10-17): wording supplied by Tyler — see scripts/content/legal-2026-10.mjs.
