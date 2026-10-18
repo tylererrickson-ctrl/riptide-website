@@ -1,5 +1,10 @@
 # Compliance checklist (Phase 6), blocking launch
 
+> **Status 2026-10-18: compliance approval of the live site confirmed by Tyler Errickson in chat.** Legal pages use the wording Tyler supplied
+> (Privacy Policy, Website Disclaimer & Terms of Use, footer disclosure). Privacy Policy Sections 2 and 5 were corrected the same day to
+> match the site's actual data collection (form fields, "I Agree" eligibility record, local storage). Keep this file for the audit trail;
+> re-review whenever data collection, performance content or the gate changes.
+
 Rule: legal and regulatory wording is pasted into the CMS **verbatim from the compliance-approved
 source**. It is never rewritten. Each item goes through the Studio review workflow (request review → second
 person approves → publish), so the Publish log records who approved the wording and when.

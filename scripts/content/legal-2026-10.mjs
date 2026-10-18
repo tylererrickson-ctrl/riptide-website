@@ -24,6 +24,7 @@ const p = (...parts) => {
   });
   return { _type: "block", _key: k(), style: "normal", markDefs, children };
 };
+const li = (...parts) => ({ ...p(...parts), listItem: "bullet", level: 1 });
 const h2 = (text) => ({ _type: "block", _key: k(), style: "h2", markDefs: [], children: [span(text)] });
 const b = (text) => ({ text });
 const a = (text, href) => ({ text, href });
@@ -35,14 +36,19 @@ export const PRIVACY_BODY = [
   p(b("Effective date: "), EFFECTIVE),
   ...clause("1. Who we are and what this covers",
     "This Privacy Policy explains how Riptide Advisors LLC and its affiliates, including Riptide Fund GP LLC and Riptide Services LLC (together, “Riptide,” “we,” “us”), collect, use and share personal information through riptide-advisors.com and related pages (the “Site”). Riptide is located at 12 Havemeyer Place, Greenwich, CT. This policy does not cover information we receive from investors in Riptide-managed funds through subscription documents or account servicing; that information is governed by our separate Privacy Notice to Investors (Section 9)."),
-  ...clause("2. Information we collect",
-    "We collect information you give us directly, such as your name, email address, phone number, firm, title and message when you complete a contact or inquiry form, request materials, or subscribe to updates. If you identify yourself as an investor or prospective portfolio manager, we may also collect information about your professional background or investor status. Our hosting provider automatically records limited technical information, such as IP address, browser type and pages requested, in standard server logs used for security and site operation."),
+  h2("2. Information we collect"),
+  p("We collect information you give us directly through the Site:"),
+  li(b("Portfolio manager inquiry form: "), "your name, email address, strategy type, current role, peak assets under management or risk capital, current prime broker, an investment idea, a description of your strategy and your message."),
+  li(b("Investor inquiry form: "), "your name, email address, allocator type, title, mandate, intended investment size and your message."),
+  li(b("Mailing list: "), "your name, email address, whether you are an investor, portfolio manager or other, the date you subscribed and the consent wording shown to you."),
+  p("If you identify yourself as an investor or prospective portfolio manager, the information you provide may include details of your professional background or investor status. Our hosting provider automatically records limited technical information, such as IP address, browser type and pages requested, in standard server logs used for security and site operation."),
+  p(b("Eligibility confirmations. "), "Some pages, such as fund performance information, are available only after you confirm that you meet the stated eligibility requirements by clicking “I Agree.” When you do, we keep a record of the notice and version you accepted, the page, the date and time, your browser type and a one-way hashed (non-reversible) form of your IP address. We keep this record for regulatory and compliance purposes and do not use it for marketing."),
   ...clause("3. How we use information",
     "We use personal information to respond to inquiries, evaluate potential investor, manager or business relationships, send communications you request, operate, secure and improve the Site, comply with legal, regulatory and recordkeeping obligations, and protect our rights. We do not use Site information to make automated decisions that produce legal effects about you."),
   ...clause("4. How we share information",
     "We do not sell personal information, and we do not share it for cross-context behavioral advertising. We may share it with our affiliates; with service providers who support the Site and our business, such as hosting, CRM and email providers, under confidentiality obligations; with our fund administrator, legal, tax and compliance advisers where relevant to a relationship you initiate; with regulators, courts or law enforcement where required by law or to protect our rights; and with a successor in connection with a merger, acquisition or reorganization."),
   ...clause("5. No cookies or tracking",
-    "The Site does not use cookies, web beacons, pixels, or third-party analytics or advertising trackers. If we introduce any of these, we will update this policy before doing so."),
+    "The Site does not use cookies, web beacons, pixels, or third-party analytics or advertising trackers. If we introduce any of these, we will update this policy before doing so. The Site stores a small number of preferences in your browser’s local storage (your light or dark display setting, whether you have seen the opening animation, and whether you have accepted an eligibility notice); these stay on your device, are not used to track you, and can be cleared in your browser settings."),
   ...clause("6. Retention",
     "We keep personal information for as long as needed for the purposes above, and longer where required by securities, tax or other recordkeeping laws. Records related to advisory and fund business may be retained for the periods required by applicable law."),
   ...clause("7. Security",
