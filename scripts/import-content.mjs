@@ -171,7 +171,7 @@ async function build() {
         { _type: "heroPage", eyebrow: "For Portfolio Managers", heading: "For Portfolio Managers",
           intro: "We provide the institutional infrastructure, operational support, and capital pathways portfolio managers need to launch strategies, scale efficiently, and focus on delivering performance.",
           image: await image("for-portfolio-managers-banner.png", ""),
-          ctas: [linkItem("Idea Hub", "/idea-hub"), linkItem("Get started", "/contact")] },
+          ctas: [linkItem("Get started", "/contact")] },
         { _type: "stepper", rail: rail("01", "Capital solutions"), eyebrow: "Capital solutions", heading: "A Structured Path for Talent to Grow.",
           intro: "Riptide supports portfolio managers at each stage of development through a clear progression:",
           steps: [
