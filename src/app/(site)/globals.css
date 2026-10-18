@@ -236,13 +236,15 @@ p { margin: 0; text-wrap: pretty; }
   backdrop-filter: saturate(1.4) blur(14px);
   border-bottom-color: var(--line);
 }
-body:has(main [data-hero-dark]) .site-header:not([data-solid="true"]) { color: #e8f0f4; --ink: #e8f0f4; --ink-faint: rgb(232 240 244 / 0.45); --accent: #f0a24a; }
+/* Ignore a dark hero that the router has parked offscreen (hidden with display:none for back-navigation),
+   otherwise the header stayed white-on-light after leaving the home page (2026-10-18). */
+body:has(main [data-hero-dark]:not([style*="display: none"]):not([style*="display: none"] *)) .site-header:not([data-solid="true"]) { color: #e8f0f4; --ink: #e8f0f4; --ink-faint: rgb(232 240 244 / 0.45); --accent: #f0a24a; }
 .site-logo { display: flex; align-items: center; flex: none; }
 .site-logo .logo-img { width: 148px; height: auto; }
 .site-logo .logo-dark { display: none; }
-body:has(main [data-hero-dark]) .site-header:not([data-solid="true"]) .logo-light,
+body:has(main [data-hero-dark]:not([style*="display: none"]):not([style*="display: none"] *)) .site-header:not([data-solid="true"]) .logo-light,
 :root[data-theme="dark"] .site-logo .logo-light { display: none; }
-body:has(main [data-hero-dark]) .site-header:not([data-solid="true"]) .logo-dark,
+body:has(main [data-hero-dark]:not([style*="display: none"]):not([style*="display: none"] *)) .site-header:not([data-solid="true"]) .logo-dark,
 :root[data-theme="dark"] .site-logo .logo-dark { display: block; }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .site-logo .logo-light { display: none; }
