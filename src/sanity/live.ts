@@ -1,3 +1,4 @@
+import { cacheTag } from "next/cache";
 import { cookies, draftMode } from "next/headers";
 import {
   defineLive,
@@ -20,9 +21,29 @@ export const { sanityFetch, SanityLive } = defineLive({
 /** Site-wide cache tag on every Sanity read; /api/revalidate expires it on publish. */
 export const SITE_CACHE_TAG = "sanity";
 
-/** The app's one shared 'use cache' boundary for Sanity reads. */
+/**
+ * The app's one shared 'use cache' boundary for Sanity reads.
+ *
+ * Published reads go straight to the Sanity API (client has useCdn:false), cached only in this
+ * 'use cache' entry under SITE_CACHE_TAG, which /api/revalidate expires on every publish.
+ * They deliberately bypass defineLive's sanityFetch: that forces the Sanity CDN and stores results in
+ * the cross-deployment fetch cache until a sync-tag revalidation. A page regenerated in the seconds
+ * after a publish (before the CDN caught up) re-cached the OLD content there, and later builds reused
+ * it — published edits appeared to revert after deploys (2026-10-17). Draft/preview reads still use
+ * sanityFetch so Presentation and live preview keep working.
+ */
 export const cachedSanity: StrictDefinedFetchType = async (options) => {
   "use cache";
+  cacheTag(SITE_CACHE_TAG);
+  if (options.perspective === "published" && !options.stega) {
+    const data = await client.fetch(options.query, options.params ?? {}, {
+      perspective: "published",
+      useCdn: false,
+      stega: false,
+      cache: "no-store",
+    });
+    return { data, sourceMap: null, tags: [SITE_CACHE_TAG] } as Awaited<ReturnType<StrictDefinedFetchType>>;
+  }
   return sanityFetch({ ...options, tags: [...(options.tags ?? []), SITE_CACHE_TAG] });
 };
 
