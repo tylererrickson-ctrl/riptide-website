@@ -18,7 +18,7 @@ import { readFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import path from "node:path";
 import { SEO } from "./content/seo-2026-10.mjs";
-import { PRIVACY_BODY, PRIVACY_LAST_UPDATED } from "./content/privacy-policy-2026-10.mjs";
+import { PRIVACY_BODY, DISCLAIMER_BODY, FOOTER_DISCLOSURE } from "./content/legal-2026-10.mjs";
 
 const DRY = process.argv.includes("--dry");
 const ROOT = path.resolve(import.meta.dirname, "..");
@@ -128,8 +128,8 @@ async function build() {
       linkItem("Risk", "/risk"),
       linkItem("Contact Us", "/contact"),
     ],
-    legalLinks: [linkItem("Privacy policy", "/english-privacy-policy")],
-    siteDisclaimer: { _type: "reference", _ref: "disclaimer-site" },
+    legalLinks: [linkItem("Disclaimer", "/disclaimer"), linkItem("Privacy Policy", "/english-privacy-policy")],
+    footerDisclosure: FOOTER_DISCLOSURE,
   };
 
   const teamRefs = team.map((m) => ({ _type: "reference", _ref: m._id, _key: key() }));
@@ -141,7 +141,7 @@ async function build() {
       sections: [
         { _type: "heroPortal", eyebrow: "Riptide Advisors",
           heading: "Navigating Alternative Investments",
-          subheading: "We offer multi-strategy funds, custom managed accounts and direct investments that drive differentiated investment performance.",
+          subheading: "We offer multi-strategy funds, custom managed accounts and direct investments that drive uncorrelated investment performance.",
           image: await image("riptide-art-home.jpg", ""),
           panels: [
             { _key: key(), _type: "portalPanel", meta: "Multi-strategy funds · Custom managed accounts", title: "For Investors",
@@ -331,20 +331,28 @@ async function build() {
     },
   ];
 
-  // Privacy policy (2026-10-17): written to match the site's actual data handling — see
-  // scripts/content/privacy-policy-2026-10.mjs. Replaces the Wix template placeholder.
+  // Legal pages (2026-10-17): wording supplied by Tyler — see scripts/content/legal-2026-10.mjs.
   const privacy = {
     _id: "page-english-privacy-policy", _type: "page", title: "Privacy Policy", path: "/english-privacy-policy",
     seo: seo("Privacy Policy | Riptide Advisors", "How Riptide Advisors collects, uses, shares and protects information submitted through riptide-advisors.com, and the choices you have.", og),
     sections: [{
-      _key: key(), _type: "legalText", heading: "Privacy Policy", lastUpdated: PRIVACY_LAST_UPDATED,
-      source: "Drafted 2026-10-17 from the site's actual data handling at Tyler Errickson's request; compliance review recommended",
+      _key: key(), _type: "legalText", heading: "Privacy Policy",
+      source: "Wording supplied by Tyler Errickson in chat, 2026-10-17 (placeholders filled: date, email; phone removed per instruction)",
       body: PRIVACY_BODY,
+    }],
+  };
+  const disclaimer = {
+    _id: "page-disclaimer", _type: "page", title: "Website Disclaimer and Terms of Use", path: "/disclaimer",
+    seo: seo("Disclaimer and Terms of Use | Riptide Advisors", "Website disclaimer and terms of use for riptide-advisors.com, including important information about offers, eligibility, regulatory status and risk.", og),
+    sections: [{
+      _key: key(), _type: "legalText", heading: "Website Disclaimer and Terms of Use",
+      source: "Wording supplied by Tyler Errickson in chat, 2026-10-17 (placeholders filled: date, email)",
+      body: DISCLAIMER_BODY,
     }],
   };
 
   const withKeys = (p) => ({ _type: "page", ...p, sections: p.sections.map((s) => ({ _key: s._key ?? key(), ...s })) });
-  const published = [...team, ...disclaimers, settings, ...pages.map(withKeys), withKeys(privacy)].map((d) => ({ ...d, review: { _type: "review", status: "editing" } }));
+  const published = [...team, ...disclaimers, settings, ...pages.map(withKeys), withKeys(privacy), withKeys(disclaimer)].map((d) => ({ ...d, review: { _type: "review", status: "editing" } }));
   return { published, drafts: [] };
 }
 

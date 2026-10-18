@@ -3,6 +3,7 @@ import { PortableText } from "next-sanity";
 import type { SiteSettings } from "@/sanity/types";
 import { SmartLink } from "./SmartLink";
 import { DisclaimerReopenButton } from "./DisclaimerGate";
+import { ptComponents } from "./sections/shared";
 import { FooterYear } from "./FooterYear";
 
 export function SiteFooter({ settings }: { settings: SiteSettings }) {
@@ -55,13 +56,13 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
 
       {!!settings?.footerDisclosure?.length && (
         <div className="footer-disclosure">
-          <PortableText value={settings.footerDisclosure} />
+          <PortableText value={settings.footerDisclosure} components={ptComponents} />
         </div>
       )}
 
       <div className="footer-legal micro">
         <span>
-          © <FooterYear /> {name}
+          © <FooterYear /> {name} LLC. All rights reserved.
         </span>
         <ul>
           {settings?.legalLinks?.map((l) =>

@@ -39,3 +39,7 @@ old_url,new_url,status,type,decision,notes
 http://riptide-advisors.com/*,https://www.riptide-advisors.com/*,301,host,final,Today: http->https then apex->www (two hops). Vercel: make www primary and redirect apex in one hop
 https://riptide-advisors.com/*,https://www.riptide-advisors.com/*,301,host,final,www stays canonical (matches Wix canonical tags)
 /*/ (trailing slash),/* (no slash),301,normalize,final,Wix strips trailing slashes with 301. Next.js does this with 308 by default; Phase 5 must emit 301
+/privacy,/english-privacy-policy,301,alias,final,Short URL for the Privacy Policy (2026-10-17)
+/privacy-policy,/english-privacy-policy,301,alias,final,Short URL for the Privacy Policy (2026-10-17)
+/terms,/disclaimer,301,alias,final,Short URL for the Website Disclaimer and Terms of Use (2026-10-17)
+/terms-of-use,/disclaimer,301,alias,final,Short URL for the Website Disclaimer and Terms of Use (2026-10-17)
