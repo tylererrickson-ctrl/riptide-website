@@ -530,7 +530,7 @@ h2.rail-label { font: inherit; letter-spacing: inherit; line-height: inherit; te
 }
 .chapter-inner { position: relative; margin-inline-start: auto; width: min(100%, 640px); }
 @media (min-width: 1100px) { .chapter-inner { margin-inline-end: 6vw; } }
-.chapter h3 { font-size: clamp(2.25rem, 1.4rem + 3vw, 4.5rem); letter-spacing: -0.04em; line-height: 1; margin-top: 12px; }
+.chapter .chapter-title { font-size: clamp(2.25rem, 1.4rem + 3vw, 4.5rem); letter-spacing: -0.04em; line-height: 1; margin-top: 12px; }
 .epigraph { margin: 24px 0 0; }
 .epigraph blockquote { margin: 0; font-family: var(--font-serif); font-style: italic; font-size: clamp(1.25rem, 1rem + 0.9vw, 1.75rem); line-height: 1.3; color: var(--ink); }
 .epigraph figcaption { margin-top: 10px; }

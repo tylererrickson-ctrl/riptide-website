@@ -240,7 +240,7 @@ async function build() {
         { _type: "heroPage", eyebrow: "Guiding values for our firm", heading: "Our Principles",
           intro: "We earn trust from our partners by creating undeniable alignment—building lasting partnerships that empower us to play to win today and improve constantly for tomorrow.",
           ctas: [linkItem("Contact now", "/contact")] },
-        { _type: "timeline", rail: rail("01", "Principles"), heading: "Our principles",
+        { _type: "timeline",
           chapters: [
             { _key: key(), _type: "chapter", marker: "01", title: "Earn Trust",
               epigraph: "“The highest form a civilization can reach is a seamless web on deserved trust.”", attribution: "Charlie Munger",

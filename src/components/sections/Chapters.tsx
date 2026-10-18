@@ -52,7 +52,8 @@ export function Chapters({ s, first }: { s: S; first: boolean }) {
                   <p className="micro">
                     {String(i + 1).padStart(2, "0")} / {String(chapters.length).padStart(2, "0")}
                   </p>
-                  <h3>{c.title}</h3>
+                  {/* No section heading → the chapter titles are the next level under the page H1. */}
+                  {s.heading ? <h3 className="chapter-title">{c.title}</h3> : <h2 className="chapter-title">{c.title}</h2>}
                   {c.epigraph && (
                     <figure className="epigraph">
                       <blockquote>{c.epigraph}</blockquote>
