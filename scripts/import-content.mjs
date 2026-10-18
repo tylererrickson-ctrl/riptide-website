@@ -194,13 +194,6 @@ async function build() {
             ["Legal, fund administration, and audit", "Royer Cooper Cohen Braunfeld, Ascent Group, and Citrin Cooperman"],
           ].map(([title, body]) => ({ _key: key(), _type: "row", title, body })),
           cta: link("Get started", "/contact") },
-        { _type: "objectives", rail: rail("04", "Scaling"), heading: "Scaling investment strategies",
-          intro: "We support portfolio managers in transforming strong investment performance into scalable, institutional-ready businesses through disciplined infrastructure, operational oversight, and structured capital pathways.",
-          rows: [
-            { _key: key(), _type: "row", title: "Institutional Infrastructure", body: "Structured pathways that connect managers with aligned strategic capital partners." },
-            { _key: key(), _type: "row", title: "Scalable Platform", body: "Grow your strategy from early stages to institutional scale." },
-            { _key: key(), _type: "row", title: "Operational Support", body: "Focus on investing while we take care of day-to-day operations and investor onboarding." },
-          ] },
         { _type: "cta", heading: "Get started", body: "Ready to explore how Riptide can support your investment goals? We’re here to help you build, scale, or allocate with clarity and confidence.", link: link("Contact us", "/contact") },
       ],
     },
