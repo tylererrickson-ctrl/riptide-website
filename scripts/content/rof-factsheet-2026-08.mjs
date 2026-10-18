@@ -32,7 +32,7 @@ const sections = [
     eyebrow: "Multi-strategy fund · Factsheet: August 2026 · For qualified purchasers only",
     heading: "Riptide Opportunities Fund",
     intro:
-      "The Riptide Opportunities Fund is a multi-strategy platform built around an aligned capital philosophy. Portfolio managers contribute a first-loss capital buffer, while Opportunities Fund investors hold capital that sits senior to that buffer in the loss waterfall. The result is a structure where every participant (platform, manager, and allocator) shares a common incentive to generate strong, risk-adjusted performance.",
+      "The Riptide Opportunities Fund is a multi-strategy platform built around an aligned capital philosophy. Portfolio managers invest directly in their strategy with Opportunities Fund investors holding capital that augments their success. The result is a structure where every participant (platform, manager, and allocator) shares a common incentive to generate strong, risk-adjusted performance.",
     stats: [
       { _key: key(), _type: "stat", label: "Inception", value: "Jan 2026" },
       { _key: key(), _type: "stat", label: "Strategy AUM", value: "~$60M" },
