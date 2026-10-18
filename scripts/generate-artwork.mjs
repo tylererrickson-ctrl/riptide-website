@@ -1,5 +1,6 @@
 /**
  * Generates Riptide's original banner artwork (replaces Wix-era stock/unknown-licence images).
+ * Currently only the home hero uses it (the For Investors / For Portfolio Managers banners were removed).
  * Abstract flowing contour lines in the brand palette, rendered on a canvas in headless Chromium.
  * Fully original — produced by this script, so Riptide owns it outright.
  *
@@ -17,8 +18,6 @@ mkdirSync(outDir, { recursive: true });
 // Brand palette (see src/app/(site)/globals.css): navy/abyss background, logo blues for lines.
 const VARIANTS = [
   { name: "riptide-art-home", seed: 7, lines: 64, amp: 0.2, freq: 1.6, tilt: -0.12, glow: [0.72, 0.35], hue: ["#1c81be", "#75c1e0"] },
-  { name: "riptide-art-investors", seed: 21, lines: 56, amp: 0.26, freq: 1.2, tilt: 0.08, glow: [0.25, 0.6], hue: ["#2596be", "#9fd6ec"] },
-  { name: "riptide-art-managers", seed: 42, lines: 60, amp: 0.17, freq: 2.1, tilt: -0.05, glow: [0.6, 0.7], hue: ["#1c81be", "#a8dcef"] },
 ];
 
 const W = 2400, H = 1350;

@@ -99,13 +99,10 @@ export const DISCLAIMER_BODY = [
     "."),
 ];
 
-/** Footer disclosure (every page). The "© YEAR Riptide Advisors LLC. All rights reserved." line is
- *  rendered by the footer's legal row so the year stays current. */
+/** Footer disclosure (every page). The "© YEAR Riptide Advisors LLC. All rights reserved." line and the
+ *  Disclaimer / Privacy Policy links are in the footer's legal row (year stays current; links not duplicated). */
 export const FOOTER_DISCLOSURE = [
   p(
-    "This website is for informational purposes only and is not an offer to sell or a solicitation of an offer to buy any security. Any such offer will be made only through confidential offering documents and only to eligible investors. Past performance is not indicative of future results; investing involves risk, including possible loss of principal. Riptide Advisors LLC files with the SEC as an exempt reporting adviser and is not a registered investment adviser or broker-dealer. This site does not use cookies. ",
-    a("Disclaimer", "/disclaimer"),
-    " · ",
-    a("Privacy Policy", "/english-privacy-policy"),
+    "This website is for informational purposes only and is not an offer to sell or a solicitation of an offer to buy any security. Any such offer will be made only through confidential offering documents and only to eligible investors. Past performance is not indicative of future results; investing involves risk, including possible loss of principal. Riptide Advisors LLC files with the SEC as an exempt reporting adviser and is not a registered investment adviser or broker-dealer. This site does not use cookies.",
   ),
 ];
