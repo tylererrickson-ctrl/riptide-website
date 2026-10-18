@@ -117,7 +117,7 @@ async function build() {
       linkItem("Principles", "/our-principles"),
       linkItem("Risk", "/risk"),
     ],
-    footerTagline: "Access to alternative strategies, lower all-in fees, improved liquidity, and better transparency through SMAs.",
+    footerTagline: "Access to alternative investments, lower all-in fees, improved liquidity, and better transparency through SMAs.",
     footerNav: [
       linkItem("Home", "/"),
       linkItem("For Investors", "/for-investors"),
