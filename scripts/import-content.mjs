@@ -237,7 +237,7 @@ async function build() {
       _id: "page-our-principles", title: "Principles", path: "/our-principles",
       seo: seo("PRINCIPLES | Riptide Advisors", null, og),
       sections: [
-        { _type: "heroPage", eyebrow: "Our principles", heading: "Guiding values for our firm",
+        { _type: "heroPage", eyebrow: "Our guiding values", heading: "Our Principles",
           intro: "We earn trust from our partners by creating undeniable alignment—building lasting partnerships that empower us to play to win today and improve constantly for tomorrow.",
           ctas: [linkItem("Contact now", "/contact")] },
         { _type: "timeline", rail: rail("01", "Principles"), heading: "Our principles",
