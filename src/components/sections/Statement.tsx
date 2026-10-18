@@ -2,18 +2,17 @@
 
 import { useRef } from "react";
 import type { Section } from "@/sanity/types";
-import { useScrollProgress } from "@/lib/useScrollProgress";
+import { useViewportProgress } from "@/lib/useScrollProgress";
 import { Cta, Heading, Rail } from "./shared";
 
 type S = Extract<Section, { _type: "statement" }>;
 
-/** Pinned statement: the sentence stays in view while its words light up with scroll. */
+/** Statement whose words light up as it scrolls up through the viewport (no pinning, so no dead space). */
 export function Statement({ s, first }: { s: S; first: boolean }) {
   const track = useRef<HTMLDivElement>(null);
-  const progress = useScrollProgress(track);
+  const progress = useViewportProgress(track);
   const words = s.text.split(/\s+/);
-  // Finish lighting at ~70% of the track so the full sentence holds before release.
-  const lit = Math.round(Math.min(1, progress / 0.7) * words.length);
+  const lit = Math.round(progress * words.length);
 
   return (
     <section id={s.anchor} data-tone={s.tone === "dark" ? "dark" : undefined} className="section section-statement">

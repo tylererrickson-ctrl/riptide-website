@@ -35,6 +35,36 @@ export function useScrollProgress(ref: RefObject<HTMLElement | null>, enabled = 
   return progress;
 }
 
+/**
+ * 0 → 1 progress of an element moving up through the viewport, without pinning:
+ * 0 when its top is at `start` (fraction of viewport height from the top), 1 when it reaches `end`.
+ */
+export function useViewportProgress(ref: RefObject<HTMLElement | null>, start = 0.85, end = 0.35) {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const top = el.getBoundingClientRect().top / window.innerHeight;
+      setProgress(Math.min(1, Math.max(0, (start - top) / (start - end))));
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [ref, start, end]);
+  return progress;
+}
+
 export function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false);
   useEffect(() => {
