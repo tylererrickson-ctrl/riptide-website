@@ -23,7 +23,7 @@ old_url,new_url,status,type,decision,notes
 /cart-page,/,301,retire,proposed,Wix eCommerce system page
 /checkout,/,301,retire,proposed,Wix eCommerce system page
 /thank-you-page,/,301,retire,proposed,Wix eCommerce system page
-/analytics,https://riptide-analytics.vercel.app,301,existing-redirect,final,EXISTING Wix redirect (301 today). Also in main nav and Wix sitemap
+/analytics,/analytics,200,keep,final,Was a 301 to riptide-analytics.vercel.app; since 2026-10-18 a site page with an "Analytics Portal" button to the app
 /profile,https://riptide-advisors.notion.site/248a9ae6ee9b80ca9c53c36d296ba8ca,301,existing-redirect,final,EXISTING Wix redirect (301 today)
 /meet-our-managers,/for-investors,301,retire,final,"Removed from the site (Tyler, 2026-10-17). Was a Wix Members Area page; old links go to /for-investors."
 /idea-hub,/contact,302,members-only,DECISION NEEDED,Wix Members Area page; linked from /for-portfolio-managers | INTERIM: temporary 302 to /contact until a decision on members-only content (avoids a 404 from the nav/CTAs)

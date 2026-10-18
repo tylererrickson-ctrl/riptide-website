@@ -349,8 +349,17 @@ async function build() {
     }],
   };
 
+  // Analytics landing page (2026-10-18): button out to the Riptide Analytics app.
+  const analytics = {
+    _id: "page-analytics", _type: "page", title: "Analytics", path: "/analytics",
+    seo: seo("Analytics | Riptide Advisors", "Riptide Analytics: the secure portal where portfolio managers upload data and access their analytics reports.", og),
+    sections: [{ _type: "heroPage", heading: "Analytics",
+      intro: "Riptide Analytics is our secure portal for portfolio managers to upload position and trade data and access their analytics reports.",
+      ctas: [linkItem("Analytics Portal", "https://riptide-analytics.vercel.app")] }],
+  };
+
   const withKeys = (p) => ({ _type: "page", ...p, sections: p.sections.map((s) => ({ _key: s._key ?? key(), ...s })) });
-  const published = [...team, ...disclaimers, settings, ...pages.map(withKeys), withKeys(privacy), withKeys(disclaimer)].map((d) => ({ ...d, review: { _type: "review", status: "editing" } }));
+  const published = [...team, ...disclaimers, settings, ...pages.map(withKeys), withKeys(privacy), withKeys(disclaimer), withKeys(analytics)].map((d) => ({ ...d, review: { _type: "review", status: "editing" } }));
   return { published, drafts: [] };
 }
 
