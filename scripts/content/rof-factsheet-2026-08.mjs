@@ -47,7 +47,7 @@ const sections = [
     heading: "Performance Characteristics",
     facts: [
       fact("2026 YTD net return", "+7.17%", true),
-      fact("Annualized Return", "10.9%", true),
+      fact("Annualized Return (Mar–Aug 2026)", "14.67%", true),
       fact("Annualized Volatility", "3.1%", true),
       fact("Sharpe Ratio", "3.5x", true),
       fact("Best Month", "+2.61%"),
