@@ -210,8 +210,8 @@ async function build() {
           intro: "Riptide gives investors a clear progression as they build conviction:",
           steps: [
             { _key: key(), _type: "step", title: "Riptide Opportunities Fund", body: "Invest through the Riptide Opportunities Fund, where portfolio managers absorb losses." },
-            { _key: key(), _type: "step", title: "Riptide Flexible Capital Fund", body: "Invest through the Riptide Flexible Capital Fund for a diversified mix of the best managers on the platform." },
-            { _key: key(), _type: "step", title: "Direct Investments", body: "Invest directly in the best managers and investment opportunities when you have conviction." },
+            { _key: key(), _type: "step", title: "Riptide Flexible Capital Fund", body: "Invest through the Riptide Flexible Capital Fund for a diversified mix of the best managers on the platform. Riptide charges no fees." },
+            { _key: key(), _type: "step", title: "Direct Investments", body: "Invest directly in the best managers and investment opportunities when you have conviction. Riptide charges no fees." },
           ],
           footnote: "All investments can sit within one account to maintain tax efficiency, simplify reporting, and provide complete transparency into holdings and performance.",
           cta: link("Contact now", "/contact") },
