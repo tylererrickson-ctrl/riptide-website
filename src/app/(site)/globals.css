@@ -358,7 +358,17 @@ h2.rail-label { font: inherit; letter-spacing: inherit; line-height: inherit; te
      (172px on a 1080p screen). The opening section now ends where its content ends, with a fixed
      modest gap after the subtext. */
   .portal { min-height: auto; }
-  .portal-statement { padding-bottom: clamp(28px, 3.5vh, 44px); }
+  /* (2026-10-19, Tyler: "harmonize with the other pages") Same type and gaps as the page heroes
+     (.page-hero h1 / .lead / .ctas): headline = --fs-h1, line-height 0.98, -0.035em; headline→text
+     28px; text→next block 32px; lead line-height 1.5. The headline is additionally capped at 10.5svh
+     so the opening section still fits one screen (e.g. 1536x864); on 1080p+ it equals --fs-h1 exactly.
+     Subtext keeps its wider 52ch measure (one statement, 2 lines — 46ch wraps it to 3).
+     Panels and the principles strip share one vertical padding; their titles use the site's -0.035em. */
+  .portal-title { font-size: min(var(--fs-h1), 10.5svh); line-height: 0.98; letter-spacing: -0.035em; }
+  .portal-sub { margin-top: 28px; line-height: 1.5; }
+  .portal-statement { padding-bottom: 32px; }
+  .portal-panel, .portal-strip { padding-block: clamp(16px, 2.6vh, 28px); }
+  .portal-panel h2, .portal-strip-title { letter-spacing: -0.035em; }
   /* Tighter gap after the philosophy statement and after the team grid. */
   .section-statement, .section-teamGrid { padding-bottom: calc(var(--section-y) * 0.4); }
 }
@@ -368,7 +378,7 @@ h2.rail-label { font: inherit; letter-spacing: inherit; line-height: inherit; te
   .portal-statement { padding-top: calc(var(--header-h) + 28px); padding-bottom: clamp(12px, 2.5vh, 32px); }
   .portal-title { font-size: clamp(2.5rem, min(1rem + 6vw, 9.5svh), 7.5rem); margin-top: 10px; }
   .portal-sub { margin-top: 10px; font-size: 1.0625rem; }
-  .portal-panel { padding-block: clamp(12px, 2vh, 20px); gap: clamp(8px, 1.6vh, 16px); }
+  .portal-panel { padding-block: clamp(12px, 1.8vh, 18px); gap: clamp(8px, 1.6vh, 16px); }
   .portal-strip { padding-block: clamp(12px, 1.8vh, 18px); }
   .portal-strip-title { margin-top: clamp(8px, 1.6vh, 16px); }
 }
