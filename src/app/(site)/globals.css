@@ -367,8 +367,9 @@ h2.rail-label { font: inherit; letter-spacing: inherit; line-height: inherit; te
   .portal-title { font-size: min(var(--fs-h1), 10.5svh); line-height: 0.98; letter-spacing: -0.035em; }
   .portal-sub { margin-top: 28px; line-height: 1.5; }
   .portal-statement { padding-bottom: 32px; }
-  .portal-panel, .portal-strip { padding-block: clamp(16px, 2.6vh, 28px); }
-  .portal-panel h2, .portal-strip-title { letter-spacing: -0.035em; }
+  /* ".portal" prefix: the base .portal-panel/.portal-strip rules come later in this file. */
+  .portal .portal-panel, .portal .portal-strip { padding-block: clamp(16px, 2.6vh, 28px); }
+  .portal .portal-panel h2, .portal .portal-strip-title { letter-spacing: -0.035em; }
   /* Tighter gap after the philosophy statement and after the team grid. */
   .section-statement, .section-teamGrid { padding-bottom: calc(var(--section-y) * 0.4); }
 }
@@ -378,8 +379,8 @@ h2.rail-label { font: inherit; letter-spacing: inherit; line-height: inherit; te
   .portal-statement { padding-top: calc(var(--header-h) + 28px); padding-bottom: clamp(12px, 2.5vh, 32px); }
   .portal-title { font-size: clamp(2.5rem, min(1rem + 6vw, 9.5svh), 7.5rem); margin-top: 10px; }
   .portal-sub { margin-top: 10px; font-size: 1.0625rem; }
-  .portal-panel { padding-block: clamp(12px, 1.8vh, 18px); gap: clamp(8px, 1.6vh, 16px); }
-  .portal-strip { padding-block: clamp(12px, 1.8vh, 18px); }
+  .portal .portal-panel { padding-block: clamp(12px, 1.8vh, 18px); gap: clamp(8px, 1.6vh, 16px); }
+  .portal .portal-strip { padding-block: clamp(12px, 1.8vh, 18px); }
   .portal-strip-title { margin-top: clamp(8px, 1.6vh, 16px); }
 }
 .portal-panels { display: grid; list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
