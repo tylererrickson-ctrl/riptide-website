@@ -178,7 +178,7 @@ async function build() {
           steps: [
             { _key: key(), _type: "step", title: "Riptide Opportunities Fund", body: "Build an audited track record in an institutional environment with aligned capital." },
             { _key: key(), _type: "step", title: "Riptide Flexible Capital Fund", body: "Starting and strategic capital to help managers launch and grow their strategies." },
-            { _key: key(), _type: "step", title: "Direct Investments", body: "Scale your operation with full support to onboard platform capital, external SMAs and LP capital seamlessly." },
+            { _key: key(), _type: "step", title: "Direct Investments", body: "Scale your fund with platform capital, external SMAs and direct investments with full operations and compliance support." },
           ],
           footnote: "Managers retain ownership of their performance, while growing their long-term business value. Riptide provides coaching and support throughout the process.",
           cta: link("Get started", "/contact") },

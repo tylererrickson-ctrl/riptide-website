@@ -1,6 +1,7 @@
 /**
  * One-off (2026-10-19, Tyler in chat): For Portfolio Managers → "A Structured Path for
- * Talent to Grow" step 3: "Capital Hosting" → "Direct Investments", with new body copy.
+ * Talent to Grow" step 3: "Capital Hosting" → "Direct Investments", with new body copy
+ * (body revised again 2026-10-19).
  * Patches only that step on the published page and logs a publishRecord.
  *
  *   node --env-file=.env.local scripts/edit-pm-step3.mjs --dry
@@ -19,7 +20,7 @@ const client = createClient({
 });
 const ID = "page-for-portfolio-managers";
 const TITLE = "Direct Investments";
-const BODY = "Scale your operation with full support to onboard platform capital, external SMAs and LP capital seamlessly.";
+const BODY = "Scale your fund with platform capital, external SMAs and direct investments with full operations and compliance support.";
 
 if (await client.getDocument(`drafts.${ID}`)) throw new Error("A draft of this page exists in Studio — publish or discard it first.");
 const page = await client.getDocument(ID);
@@ -48,7 +49,7 @@ await client.create({
   publishedBy: "Tyler Errickson (via Claude, scripts/edit-pm-step3.mjs)",
   approvedBy: "Tyler Errickson — requested in chat 2026-10-19",
   approvedAt: now,
-  reviewNote: `Step 3 "Capital Hosting" → "${TITLE}"; body: "${BODY}"`,
+  reviewNote: `Step 3 "${step.title}" → "${TITLE}"; body: "${step.body}" → "${BODY}"`,
   contentHash: createHash("sha256").update(JSON.stringify(snap)).digest("hex").slice(0, 16),
   snapshot: JSON.stringify(snap, null, 2),
 });
