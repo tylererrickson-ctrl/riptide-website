@@ -51,7 +51,7 @@ export function SiteFooter({ settings }: { settings: SiteSettings }) {
       </div>
 
       <div className="footer-wordmark">
-        <Image src="/images/logo-horizontal-white.png" alt={name} width={1103} height={374} sizes="(min-width: 900px) 520px, 70vw" />
+        <Image src="/images/logo-horizontal-white.png" alt={name} width={1103} height={374} sizes="(min-width: 900px) 148px, 70vw" />
       </div>
 
       {!!settings?.footerDisclosure?.length && (

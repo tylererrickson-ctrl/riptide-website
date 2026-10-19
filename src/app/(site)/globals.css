@@ -683,6 +683,14 @@ a.cta-row:hover .arrow { transform: translateX(10px); color: var(--accent); }
 .footer-wordmark img { width: clamp(220px, 38vw, 520px); height: auto; }
 .footer-disclosure { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); font-size: 0.8125rem; color: var(--ink-muted); max-width: 110ch; }
 .footer-disclosure p + p { margin-top: 0.8em; }
+/* Desktop (2026-10-19, Tyler): logo at header size (148px), beside the disclosure on one row. */
+@media (min-width: 900px) {
+  .site-footer { display: grid; grid-template-columns: 148px minmax(0, 1fr); column-gap: clamp(32px, 4vw, 64px); }
+  .site-footer > * { grid-column: 1 / -1; }
+  .site-footer > .footer-wordmark { grid-column: 1; align-self: start; margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--line); }
+  .site-footer > .footer-wordmark img { width: 148px; }
+  .site-footer > .footer-disclosure { grid-column: 2; }
+}
 .footer-legal {
   margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--line);
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
