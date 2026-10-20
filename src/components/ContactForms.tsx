@@ -133,7 +133,7 @@ function LeadForm({ formKey, title, successMessage }: { formKey: FormKey; title:
           return (
             <fieldset key={f.name} data-required data-label={f.label} className="span-2">
               <legend>
-                {f.label} <span aria-hidden="true">*</span>
+                {f.label}
                 <span className="sr-only"> (required, choose at least one)</span>
               </legend>
               <div className="checks">
@@ -150,7 +150,7 @@ function LeadForm({ formKey, title, successMessage }: { formKey: FormKey; title:
         return (
           <div className={`field${f.kind === "textarea" ? " span-2" : ""}`} key={f.name}>
             <label htmlFor={fid}>
-              {f.label} <span aria-hidden="true">*</span>
+              {f.label}
             </label>
             {f.kind === "textarea" ? (
               <textarea id={fid} name={f.name} required rows={5} maxLength={5000} />
