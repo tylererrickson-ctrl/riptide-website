@@ -87,6 +87,6 @@ export function validate(form: FormKey, raw: unknown): { ok: true; values: Submi
     }
   }
   // A form with no required fields still shouldn't create a blank lead.
-  if (!filled) errors.push("Please fill in at least one field");
+  if (!filled && !errors.length) errors.push("Please fill in at least one field");
   return errors.length ? { ok: false, errors } : { ok: true, values };
 }
