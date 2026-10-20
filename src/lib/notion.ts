@@ -55,7 +55,7 @@ function pmProperties(v: Submission, submittedAt: string) {
   return {
     "Firm Name": title(name),
     "Contact Name": rich(name),
-    Email: { email: str(v.email) },
+    Email: { email: str(v.email) || null },
     Strategy: multi(v.strategy as string[]),
     ...(roles.includes("Running Fund") ? { "Current Role": select("Running Fund") } : {}),
     ...(pb ? { "Prime Broker(s)": select(pb) } : {}),
@@ -72,7 +72,7 @@ function pmProperties(v: Submission, submittedAt: string) {
 function allocatorProperties(v: Submission) {
   return {
     Name: title(`${str(v.firstname)} ${str(v.lastname)}`.trim()),
-    Email: { email: str(v.email) },
+    Email: { email: str(v.email) || null },
     "Allocator Type": multi(v.allocator_type as string[]),
     Title: multi(v.title as string[]),
     Mandate: multi(v.mandate as string[]),
@@ -86,7 +86,7 @@ function allocatorProperties(v: Submission) {
 function mailingListProperties(v: Submission, submittedAt: string) {
   return {
     Name: title(`${str(v.firstname)} ${str(v.lastname)}`.trim()),
-    Email: { email: str(v.email) },
+    Email: { email: str(v.email) || null },
     "I am": multi(v.audience as string[]),
     Status: select("Subscribed"),
     Source: select("Website form"),

@@ -131,10 +131,11 @@ function LeadForm({ formKey, title, successMessage }: { formKey: FormKey; title:
         const fid = `${id}-${f.name}`;
         if (f.kind === "checkboxes") {
           return (
-            <fieldset key={f.name} data-required data-label={f.label} className="span-2">
+            <fieldset key={f.name} data-required={f.required || undefined} data-label={f.label} className="span-2">
               <legend>
                 {f.label}
-                <span className="sr-only"> (required, choose at least one)</span>
+                {f.required && <span aria-hidden="true"> *</span>}
+                {f.required && <span className="sr-only"> (required, choose at least one)</span>}
               </legend>
               <div className="checks">
                 {f.options.map((o) => (
@@ -151,15 +152,16 @@ function LeadForm({ formKey, title, successMessage }: { formKey: FormKey; title:
           <div className={`field${f.kind === "textarea" ? " span-2" : ""}`} key={f.name}>
             <label htmlFor={fid}>
               {f.label}
+              {f.required && <span aria-hidden="true"> *</span>}
             </label>
             {f.kind === "textarea" ? (
-              <textarea id={fid} name={f.name} required rows={5} maxLength={5000} />
+              <textarea id={fid} name={f.name} required={f.required} rows={5} maxLength={5000} />
             ) : (
               <input
                 id={fid}
                 name={f.name}
                 type={f.kind}
-                required
+                required={f.required}
                 maxLength={f.kind === "email" ? 254 : 300}
                 autoComplete={f.name === "firstname" ? "given-name" : f.name === "lastname" ? "family-name" : f.kind === "email" ? "email" : undefined}
               />
