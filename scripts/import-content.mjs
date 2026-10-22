@@ -328,7 +328,7 @@ async function build() {
     _id: "page-analytics", _type: "page", title: "Analytics", path: "/analytics",
     seo: seo("Analytics | Riptide Advisors", "Riptide Analytics: the secure portal where portfolio managers upload data and access their analytics reports.", og),
     sections: [{ _type: "heroPage", heading: "Analytics",
-      intro: "Riptide Analytics is our secure portal for portfolio managers to upload position and trade data and access their analytics reports.",
+      intro: "Riptide Analytics is our secure portal for portfolio managers to upload presentations, position data, trade data and returns.",
       ctas: [linkItem("Analytics Portal", "https://riptide-analytics.vercel.app")] }],
   };
 
