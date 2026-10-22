@@ -338,7 +338,7 @@ async function build() {
     _id: "page-reports", _type: "page", title: "Reports", path: "/reports",
     seo: seo("Strategy Reports | Riptide Advisors", "Riptide Strategy Reports: the secure portal where allocators view the latest finalized performance reports for their strategies.", og),
     sections: [{ _type: "heroPage", heading: "Strategy Reports",
-      intro: "Strategy Reports is our secure portal for allocators to view the latest finalized performance reports for the strategies they follow and to request updates.",
+      intro: "Strategy Reports is our secure portal for allocators to view performance reports for strategies available on our platform.",
       ctas: [linkItem("Reports Portal", "https://portal.riptide-advisors.com")] }],
   };
 
