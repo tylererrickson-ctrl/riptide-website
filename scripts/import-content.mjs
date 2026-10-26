@@ -329,7 +329,7 @@ async function build() {
     seo: seo("Analytics | Riptide Advisors", "Riptide Analytics: the secure portal where portfolio managers upload data and access their analytics reports.", og),
     sections: [{ _type: "heroPage", heading: "Analytics",
       intro: "Riptide Analytics is our secure portal for portfolio managers to upload presentations, position data, trade data and returns.",
-      ctas: [linkItem("Analytics Portal", "https://riptide-analytics.vercel.app")] }],
+      ctas: [linkItem("Analytics Portal", "https://analytics.riptide-advisors.com")] }],
   };
 
   // Reports landing page (2026-10-18): button out to the allocator portal.
